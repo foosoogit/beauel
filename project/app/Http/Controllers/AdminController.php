@@ -1834,6 +1834,7 @@ class AdminController extends Controller
 
 	function insertCustomer(Request $request){
 		$targetSerial=$request->serial_user;
+		log::alert("targetSerial=".$targetSerial);
 		if(session('CustomerManage')=="new"){
 			$redirectPlace='/customers/ShowInputCustomer';
 			session(['CustomerManage' => 'new']);
@@ -1883,7 +1884,7 @@ class AdminController extends Controller
 			'branch'=>session('target_branch_serial'),
 			'referee_name'=>trim($request->syokaisya_txt)
 		];
-		//Log::alert("target_branch_serial=".session('target_branch_serial'));
+		Log::alert("target_branch_serial=".session('target_branch_serial'));
 		User::upsert($targetData,['serial_user']);
 		setcookie('TorokuMessageFlg','true',time()+60);
 		$header="";$slot="";
