@@ -99,7 +99,10 @@
                                 <td class="border px-4 py-2">
                                    {{-- target_branch_serial={{ session('target_branch_serial') }} --}}
                                     @if(session('target_branch_serial')==="01")
-                                        <form method="GET" action="/customers/ShowPaymentRegistrationIflame/0/{{$user->serial_user}}">@csrf
+                                    
+                                    <form method="GET" action="{{ route('users.show', $user->serial_user) }}">@csrf    
+                                    {{--<form method="GET" action="/customers/ShowPaymentRegistrationIflame/0/{{$user->serial_user}}">@csrf--}}
+                                            <input name="page_num" type="hidden" value="{{$users->currentPage()}}"/>
                                             <input name="rireki_Btn" type="submit" value="履歴・新規">
                                             {{--  <form action="/customers/ContractList/{{$user->serial_user}}" method="GET">@csrf<input name="keiyaku_Btn" type="submit" value="来店・支払い・新規">--}}
                                             <input name="page_num" type="hidden" value="{{$users->currentPage()}}"/>
