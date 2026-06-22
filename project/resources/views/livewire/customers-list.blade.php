@@ -92,7 +92,7 @@
                         @foreach ($users as $user)
                             <tr>
                                 <td class="border px-4 py-2">
-                                    <form action="{{ route('customers.ShowSyuseiCustomer') }}" method="POST">@csrf
+                                    <form action="{{ route('customers.ShowSyuseiCustomer.post') }}" method="POST">@csrf
                                         <input name="syusei_Btn" type="submit" value="{{$user->serial_user}}">
                                     </form>
                                 </td>
