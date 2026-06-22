@@ -108,10 +108,17 @@
                                             <input name="page_num" type="hidden" value="{{$users->currentPage()}}"/>
                                         </form>
                                     @else
+                                    
+                                    <form action="{{ route('customers.ContractList.get', ['UserSerial' => $user->serial_user]) }}" method="GET">@csrf
+                                            <input name="keiyaku_Btn" type="submit" value="履歴・新規">
+                                            <input name="page_num" type="hidden" value="{{$users->currentPage()}}"/>
+                                        </form>
+                                    {{-- 
                                         <form action="/customers/ContractList/{{$user->serial_user}}" method="GET">@csrf
                                             <input name="keiyaku_Btn" type="submit" value="履歴・新規">
                                             <input name="page_num" type="hidden" value="{{$users->currentPage()}}"/>
                                         </form>
+                                     --}}
                                     @endif
                                 </td>
                                 <td class="border px-4 py-2" {!! $user->default_color!!}><div class="text-nowrap">{{ $user->name_sei}}&nbsp;{{ $user->name_mei}}</div></td>
