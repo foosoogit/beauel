@@ -18,7 +18,13 @@ input,textarea{border: 1px solid #aaa;}
 					<div class="row mb-2">
 						<div class="col-auto">
 							<a href="../../../top" class="btn btn-primary my-2">メニュー</a>
+							<a href="{{route('admin.top')}}" class="btn btn-primary my-2">メニュー</a>
 						</div>
+						{{-- 
+						<form method="GET" action="{{route('admin.top')}}">@csrf
+        					<button type="submit" name="to_menu" class="btn btn-primary btn-sm" >メニューに戻る</button>
+    					</form>
+						 --}}
 	            		<div class="col-auto">
 							<a href="/customers/ContractList/{{$targetUser->serial_user}}" class="btn btn-primary my-2">戻る</a>
 						</div>
