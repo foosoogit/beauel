@@ -12,8 +12,10 @@
 					{!!$msg!!}
 					<ul class="my-3">
 						@if (session('target_branch_serial')!=="01")
-							<li>
-								<form method="GET" action="/customers/ShowInpContract/{{$targetSerial}}">@csrf
+							<li>ShowInpKeiyaku.get
+
+								{{--<form method="GET" action="/customers/ShowInpContract/{{$targetSerial}}">@csrf--}}
+								<form method="GET" action="{{route('customers.ShowInpKeiyaku.get',['serial_user' => $targetSerial])}}">@csrf
 									<button class="btn btn-primary" type="submit">続けて契約書を作成</button>
 								</form>
 							</li>
