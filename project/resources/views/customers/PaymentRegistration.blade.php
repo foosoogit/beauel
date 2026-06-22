@@ -197,28 +197,28 @@ table td {border: 1px solid #aaa;}
 					</tr>
 					<tr>
 						<td {!!$set_gray_array[0]!!} style="height: 22px">
-							1回<button name="count_btn" type="submit" value="01" formaction="{{ route('customers.ShowMedicalRecord') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[0]}}>カルテ</button>
+							1回<button name="count_btn" type="submit" value="01" formaction="{{ route('customers.ShowMedicalRecord.post') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[0]}}>カルテ</button>
 						</td>
 						<td {!!$set_gray_array[1]!!} style="height: 22px">
-							2回<button name="count_btn" type="submit" value="02" formaction="{{ route('customers.ShowMedicalRecord') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[1]}}>カルテ</button>
+							2回<button name="count_btn" type="submit" value="02" formaction="{{ route('customers.ShowMedicalRecord.post') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[1]}}>カルテ</button>
 						</td>
 						<td {!!$set_gray_array[2]!!} style="height: 22px">
-							3回<button name="count_btn" type="submit" value="03" formaction="{{ route('customers.ShowMedicalRecord') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[2]}}>カルテ</button>
+							3回<button name="count_btn" type="submit" value="03" formaction="{{ route('customers.ShowMedicalRecord.post') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[2]}}>カルテ</button>
 						</td>
 						<td {!!$set_gray_array[3]!!} style="height: 22px">
-							4回<button name="count_btn" type="submit" value="04" formaction="{{ route('customers.ShowMedicalRecord') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[3]}}>カルテ</button>
+							4回<button name="count_btn" type="submit" value="04" formaction="{{ route('customers.ShowMedicalRecord.post') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[3]}}>カルテ</button>
 						</td>
 						<td {!!$set_gray_array[4]!!} style="height: 22px">
-							5回<button name="count_btn" type="submit" value="05" formaction="{{ route('customers.ShowMedicalRecord') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[4]}}>カルテ</button>
+							5回<button name="count_btn" type="submit" value="05" formaction="{{ route('customers.ShowMedicalRecord.post') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[4]}}>カルテ</button>
 						</td>
 						<td {!!$set_gray_array[5]!!} style="height: 22px">
-							6回<button name="count_btn" type="submit" value="06" formaction="{{ route('customers.ShowMedicalRecord') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[5]}}>カルテ</button>
+							6回<button name="count_btn" type="submit" value="06" formaction="{{ route('customers.ShowMedicalRecord.post') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[5]}}>カルテ</button>
 						</td>
 						<td {!!$set_gray_array[6]!!} style="height: 22px">
-							7回<button name="count_btn" type="submit" value="07" formaction="{{ route('customers.ShowMedicalRecord') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[6]}}>カルテ</button>
+							7回<button name="count_btn" type="submit" value="07" formaction="{{ route('customers.ShowMedicalRecord.post') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[6]}}>カルテ</button>
 						</td>
 						<td {!!$set_gray_array[7]!!} style="height: 22px">
-							8回<button name="count_btn" type="submit" value="08" formaction="{{ route('customers.ShowMedicalRecord') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[7]}}>カルテ</button>
+							8回<button name="count_btn" type="submit" value="08" formaction="{{ route('customers.ShowMedicalRecord.post') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[7]}}>カルテ</button>
 						</td>
 					</tr>
 					<tr>
@@ -270,28 +270,28 @@ table td {border: 1px solid #aaa;}
 					</tr>
 					<tr>
 						<td {!!$set_gray_array[8]!!} style="height: 22px">
-							9回<button name="count_btn" type="submit" value="09" formaction="{{ route('customers.ShowMedicalRecord') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[8]}}>カルテ</button>
+							9回<button name="count_btn" type="submit" value="09" formaction="{{ route('customers.ShowMedicalRecord.post') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[8]}}>カルテ</button>
 						</td>
 						<td {!!$set_gray_array[9]!!} style="height: 22px">
-							10回<button name="count_btn" type="submit" value="10" formaction="{{ route('customers.ShowMedicalRecord') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[9]}}>カルテ</button>
+							10回<button name="count_btn" type="submit" value="10" formaction="{{ route('customers.ShowMedicalRecord.post') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[9]}}>カルテ</button>
 						</td>
 						<td {!!$set_gray_array[10]!!}>
-							11回<button name="count_btn" type="submit" value="11" formaction="{{ route('customers.ShowMedicalRecord') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[10]}}>カルテ</button>
+							11回<button name="count_btn" type="submit" value="11" formaction="{{ route('customers.ShowMedicalRecord.post') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[10]}}>カルテ</button>
 						</td>
 						<td {!!$set_gray_array[11]!!}>
-							12回<button name="count_btn" type="submit" value="12" formaction="{{ route('customers.ShowMedicalRecord') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[11]}}>カルテ</button>
+							12回<button name="count_btn" type="submit" value="12" formaction="{{ route('customers.ShowMedicalRecord.post') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[11]}}>カルテ</button>
 						</td>
 						<td {!!$set_gray_array[12]!!}>
-							13回<button name="count_btn" type="submit" value="13" formaction="{{ route('customers.ShowMedicalRecord') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[12]}}>カルテ</button>
+							13回<button name="count_btn" type="submit" value="13" formaction="{{ route('customers.ShowMedicalRecord.post') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[12]}}>カルテ</button>
 						</td>
 						<td {!!$set_gray_array[13]!!}>
-							14回<button name="count_btn" type="submit" value="14" formaction="{{ route('customers.ShowMedicalRecord') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[13]}}>カルテ</button>
+							14回<button name="count_btn" type="submit" value="14" formaction="{{ route('customers.ShowMedicalRecord.post') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[13]}}>カルテ</button>
 						</td>
 						<td {!!$set_gray_array[14]!!}>
-							15回<button name="count_btn" type="submit" value="15" formaction="{{ route('customers.ShowMedicalRecord') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[14]}}>カルテ</button>
+							15回<button name="count_btn" type="submit" value="15" formaction="{{ route('customers.ShowMedicalRecord.post') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[14]}}>カルテ</button>
 						</td>
 						<td {!!$set_gray_array[15]!!}>
-							16回<button name="count_btn" type="submit" value="16" formaction="{{ route('customers.ShowMedicalRecord') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[15]}}>カルテ</button>
+							16回<button name="count_btn" type="submit" value="16" formaction="{{ route('customers.ShowMedicalRecord.post') }}" formtarget="_blank" class="btn btn-outline-primary btn-sm" {{$visit_disabeled[15]}}>カルテ</button>
 						</td>
 					</tr>
 					<tr>
