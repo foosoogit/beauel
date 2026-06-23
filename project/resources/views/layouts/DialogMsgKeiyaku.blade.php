@@ -8,8 +8,9 @@
 				<div class="card-body">
 					{!!$msg!!}
 					<ul>
-						<li class="my-3">
-							<form method="GET" action="/customers/ShowInpRecordVisitPayment/{{$SerialKeiyaku}}/{{$SerialUser}}">@csrf
+						<li class="my-3"> 
+							{{--<form method="GET" action="/customers/ShowInpRecordVisitPayment/{{$SerialKeiyaku}}/{{$SerialUser}}">@csrf --}}
+							<form method="GET" action="{{ route('customers.ShowInpRecordVisitPayment.get', ['SerialKeiyaku' => $SerialKeiyaku,'SerialUser'=> $SerialUser])}}">@csrf
 								<button class="btn btn-primary" type="submit">続けて来店記録を作成</button>
 							</form>
 						</li>
