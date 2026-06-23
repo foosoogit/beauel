@@ -21,8 +21,9 @@
 							</li>
 						@endif
 						@if (session('target_branch_serial')==="01")
-							<li>
-								<form method="GET" action="/customers/ShowPaymentRegistrationIflame/0/{{$targetSerial}}">@csrf
+							<li> 
+								{{--<form method="GET" action="/customers/ShowPaymentRegistrationIflame/0/{{$targetSerial}}">@csrf --}}
+									<form method="GET" action="{{route('customers.ShowPaymentRegistrationIflame',['SerialKeiyaku' => 0,'SerialUser' => $targetSerial])}}">@csrf
 									{{--<form method="GET" action="/customers/ShowInpContract/{{$targetSerial}}">@csrf
 								<form method="GET" action="{{ route('customers.ShowPaymentRegistrationIflame', ['SerialKeiyaku'=>'','SerialUser' =>{{$targetSerial}}]) }}">@csrf		
 										
