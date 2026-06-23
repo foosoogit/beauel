@@ -100,7 +100,7 @@
                                    {{-- target_branch_serial={{ session('target_branch_serial') }} --}}
                                     @if(session('target_branch_serial')==="01")
                                     
-                                    <form method="GET" action="{{ route('users.show', $user->serial_user) }}">@csrf    
+                                    <form method="GET" action="{{ route('customers.ShowPaymentRegistrationIflame', ['SerialKeiyaku' => 0, 'SerialUser' => $user->serial_user])}}">@csrf    
                                     {{--<form method="GET" action="/customers/ShowPaymentRegistrationIflame/0/{{$user->serial_user}}">@csrf--}}
                                             <input name="page_num" type="hidden" value="{{$users->currentPage()}}"/>
                                             <input name="rireki_Btn" type="submit" value="履歴・新規">
