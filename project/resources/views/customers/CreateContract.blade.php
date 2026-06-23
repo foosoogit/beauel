@@ -17,7 +17,7 @@ input,textarea{border: 1px solid #aaa;}
 					<form id="ContractFm" name="ContractFm" action="{{route('customers.insertContract.post')}}" method="POST" >@csrf
 					<div class="row mb-2">
 						<div class="col-auto">
-							<a href="../../../top" class="btn btn-primary my-2">メニュー</a>
+							{{--<a href="../../../top" class="btn btn-primary my-2">メニュー</a>--}}
 							<a href="{{route('admin.top')}}" class="btn btn-primary my-2">メニュー</a>
 						</div>
 						{{-- 
