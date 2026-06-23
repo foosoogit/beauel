@@ -1,5 +1,5 @@
-<div class="col-auto">
-    <a class="btn mb-2 btn-primary btn-sm" href="{{route('admin.top')}}">メニューに戻る</a>
+<div class="col-auto"> 
+    {{--<a class="btn mb-2 btn-primary btn-sm" href="{{route('admin.top')}}">メニューに戻る</a> --}}
     <form method="GET" action="{{route('admin.top')}}">@csrf
         <button type="submit" name="to_menu" class="btn btn-primary btn-sm" >メニューに戻る</button>
     </form>
