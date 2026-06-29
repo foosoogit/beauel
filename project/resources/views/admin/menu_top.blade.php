@@ -107,7 +107,7 @@
 										</form>
 									</li>
 								</div>
-								@if(session('target_branch_serial')==="02")
+								{{-- @if(session('target_branch_serial')==="02") --}}
 									<div class="col-auto">
 										<li>
 											<form method="POST" action="{{route('admin.ContractReport.post')}}">@csrf
@@ -115,7 +115,7 @@
 											</form>
 										</li>
 									</div>
-								@endif
+								{{-- @endif --}}
 								<div class="col-auto">
 									<li>
 										<form method="POST" action="{{route('admin.YearlyReport.post')}}">@csrf
