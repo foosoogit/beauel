@@ -40,7 +40,8 @@ function pass_ctrl(){
 
 function ShowModal(){
 	$.ajax({
-		url: '/ajax_get_coming_soon_user',
+		//url: '/ajax_get_coming_soon_user',
+		url:"{{ route('customers.ajax_staff_dell_time_card') }}",
 		type: 'post', // getかpostを指定(デフォルトは前者)
 		dataType: 'json', 
 		scriptCharset: 'utf-8',

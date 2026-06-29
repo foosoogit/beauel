@@ -142,7 +142,7 @@ class CashBookList extends Component
     public function render(Request $request)
     {
         OtherFunc::set_access_history($_SERVER['HTTP_REFERER']);
-        $balance=CashBook::select(DB::raw('SUM(deposit -  payment) as balance'))
+        $balance=CashBook::select(DB::raw('SUM(deposit -  payment) as balance'))->where('branch',session('target_branch_serial'))
             ->value('balance');
         $CashBookQuery=CashBook::query();
         $balance_Query=CashBook::query();
