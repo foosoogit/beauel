@@ -11,27 +11,23 @@
 				<div class="card-body">
 					{!!$msg!!}
 					<ul class="my-3">
-						@if (session('target_branch_serial')!=="01")
-							<li>ShowInpKeiyaku.get
-
-								{{--<form method="GET" action="/customers/ShowInpContract/{{$targetSerial}}">@csrf--}}
+					
+						{{-- @if (session('target_branch_serial')!=="01") --}}
+							<li>
 								<form method="GET" action="{{route('customers.ShowInpKeiyaku.get',['serial_user' => $targetSerial])}}">@csrf
 									<button class="btn btn-primary" type="submit">続けて契約書を作成</button>
 								</form>
 							</li>
-						@endif
-						@if (session('target_branch_serial')==="01")
+						{{-- @endif --}}
+					
+						{{--  @if (session('target_branch_serial')==="01")
 							<li> 
-								{{--<form method="GET" action="/customers/ShowPaymentRegistrationIflame/0/{{$targetSerial}}">@csrf --}}
 									<form method="GET" action="{{route('customers.ShowPaymentRegistrationIflame',['SerialKeiyaku' => 0,'SerialUser' => $targetSerial])}}">@csrf
-									{{--<form method="GET" action="/customers/ShowInpContract/{{$targetSerial}}">@csrf
-								<form method="GET" action="{{ route('customers.ShowPaymentRegistrationIflame', ['SerialKeiyaku'=>'','SerialUser' =>{{$targetSerial}}]) }}">@csrf		
-										
-									--}}
+
 									<button class="btn btn-primary" type="submit">続けて入金、来店記録を入力</button>
 								</form>
 							</li>
-						@endif
+						@endif--}}
 						<li class="my-3">
 							<button type="button" class="btn btn-primary" onClick="history.back()">前画面に戻る</button>
 						</li>

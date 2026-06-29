@@ -11,11 +11,13 @@ table td {border: 1px solid #aaa;}
 	<div class="row">
 		@include('layouts.header')
 	</div>
+	{{-- 
 	@if(session('target_branch_serial')=='02')
 		<div class="row">
 			契約番号:&nbsp;{{$KeiyakuInf->serial_keiyaku}}&nbsp;/&nbsp;契約名:&nbsp;{{$KeiyakuInf->keiyaku_name}}
 		</div>
 	@endif
+	 --}}
 	<div class="row">
 		顧客番号:&nbsp;{{$UserInf->serial_user}}&nbsp;/&nbsp;顧客名: {{$UserInf->name_sei}}&nbsp;{{$UserInf->name_mei}}&nbsp;({{$UserInf->name_sei_kana}}&nbsp;{{$UserInf->name_mei_kana}})
 	</div>

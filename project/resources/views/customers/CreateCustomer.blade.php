@@ -72,7 +72,8 @@ input,textarea{
 							</div>
 						</div>
 					</p>
-					@if(session('target_branch_serial')=='02')
+					 
+					{{-- @if(session('target_branch_serial')=='02') --}}
 						<p style="py-2.5">●生年月日
 							<select name="birt_year_slct" class="bg-white-500 text-black rounded px-3 py-1" tabindex="5">{!! $html_birth_year_slct !!}</select> 年
 							<select name="birth_month_slct" class="bg-white-500 text-black rounded px-3 py-1" tabindex="6">
@@ -193,9 +194,10 @@ input,textarea{
 						<p>
 						<input type="text" name="email" id="email" value="{{optional($target_user)->email}}" class="bg-white-500 border-solid pxtext-black rounded px-3 py-1" tabindex="12"><span id="email_for_error" class="text-danger fw-bold"></span></p>
 						<p style="py-2.5">●電話番号</p>
-						<p style="py-2.5">{{-- <span class="text-danger">*</span>--}}
+						<p style="py-2.5">
 						<input type="text" name="phone" id="phone" value="{{ optional($target_user)->phone }}" class="bg-white-500 border-solid pxtext-black rounded px-3 py-1" tabindex="13"><span id="phone_for_error" class="text-danger fw-bold"></span></p>
-                    @endif
+                    {{--@endif--}}
+	
 					<p style="py-2.5">●何を見て当サロンに来られましたか？</p>
 					{!!$html_reason_coming!!}  
 					<button class="btn btn-primary w-100 my-3" type="submit" id="SubmitBtn" value="{{$btnDisp}}" onclick="return validate();">{{$btnDisp}}</button>

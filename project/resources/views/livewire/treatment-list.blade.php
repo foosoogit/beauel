@@ -36,7 +36,8 @@
 				@endif
                 <div class="card-header">
                     <div class="row h3">
-                        <form method="GET" action="/admin/InpTreatment/new">@csrf
+                        {{-- <form method="GET" action="/admin/InpTreatment/new">@csrf --}}
+                        <form method="GET" action="{{ route('admin.InpTreatment.get', ['TreatmentContentSerial' => 'new']) }}">@csrf
                             <button class="btn btn-primary" type="submit" name="NewTreatmentBtn" value="new">新規施術登録</button>
                         </form>	
                     </div>

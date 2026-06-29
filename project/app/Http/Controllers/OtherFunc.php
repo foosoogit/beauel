@@ -472,9 +472,9 @@ class OtherFunc extends Controller
 		}
 		$sbj_array=array_merge($sbj_array,$PaymentMethod_hyouji_array);
 		array_push($sbj_array,'合計売上','累計売上','新規<br>来店数','会員<br>来店数','来店<br>合計','累計<br>来店数');
-		if(session('target_branch_serial')=='02'){
+		//if(session('target_branch_serial')=='02'){
 			array_push($sbj_array,'累計<br>来店数','契約<br>人数','累計<br>契約数','契約率');
-		}
+		//}
 		$show_clm_cnt=count($PaymentMethodArray)+3;
 		//Log::info($sbj_array);
 		/*
@@ -574,12 +574,14 @@ class OtherFunc extends Controller
 					<td class="border px-4 py-2 not_show_cml" style="text-align: right;display:none;">'.number_format($member_visiters_cnt).'</td>
 					<td class="border px-4 py-2 not_show_cml" style="text-align: right;display:none;">'.number_format($all_visiters_cnt).'</td>
 					<td class="border px-4 py-2 not_show_cml" style="text-align: right;display:none;">'.number_format($ruikei_visiters_cnt).'</td>';
-			if(session('target_branch_serial')<>'01'){
+
+				//if(session('target_branch_serial')<>'01'){
 				$htm_month_table.='<td class="border px-4 py-2 not_show_cml" style="text-align: right;display:none;">'.number_format($contract_cnt).'</td>
 					<td class="border px-4 py-2 not_show_cml" style="text-align: right;display:none;"">'.number_format($contract_cnt).'</td>
 					<td class="border px-4 py-2 not_show_cml" style="text-align: right;display:none;">'.number_format($ruikei_contract_cnt).'</td>
 					<td class="border px-4 py-2 not_show_cml" style="text-align: right;display:none;">'.$keiyakuritu.'</td></tr>';
-			}
+			//}
+
 		}
 		$htm_month_table.='<tr><td class="border px-4 py-2" style="text-align: middle;">合計</td>';
 		for($i=0;$i<count($PaymentMethodArray);$i++){
@@ -598,11 +600,13 @@ class OtherFunc extends Controller
 			<td class="border px-4 py-2 not_show_cml" style="text-align: right;display:none;">'.number_format($total_member_visiters_cnt).'</td>
 			<td class="border px-4 py-2 not_show_cml" style="text-align: right;display:none;">'.number_format($ruikei_visiters_cnt).'</td>
 			<td class="border px-4 py-2 not_show_cml" style="text-align: right;display:none;">'.number_format($ruikei_visiters_cnt).'</td>';
-			if(session('target_branch_serial')<>'01'){
+			
+			//if(session('target_branch_serial')<>'01'){
 				$htm_month_table.='<td class="border px-4 py-2 not_show_cml" style="text-align: right;display:none" style="display:none">'.number_format($ruikei_contract_cnt).'</td>
 					<td class="border px-4 py-2 not_show_cml" style="text-align: right;display:none">'.number_format($ruikei_contract_cnt).'</td>
 					<td class="border px-4 py-2 not_show_cml" style="display:none">&nbsp;</td></tr>';
-			}
+			//}
+
 		$htm_month_table.='</tbody>';
 		$htm_month_table.='</tr></thead></table>';
 		return $htm_month_table;
@@ -711,9 +715,9 @@ class OtherFunc extends Controller
 		$target_contract_money_array=explode( ',',initConsts::TargetContractMoney());
 		$sbj_array=array();
 		//if(session('target_branch_serial')==="02"){
-			$sbj_array=['月','契約金額合計(円)','累計契約金額(円)','解約損金合計(円)','累計解約損金(円)','合計(円)','累計合計(円)','目標値/入力・修正(円)','達成率(%)','前年度比(%)','契約金額合計(契約金-損金)(円)','目標値(円)','達成率(%)','契約金額合計(円)','目標値(円)','達成率(%)'];
+			//$sbj_array=['月','契約金額合計(円)','累計契約金額(円)','解約損金合計(円)','累計解約損金(円)','合計(円)','累計合計(円)','目標値/入力・修正(円)','達成率(%)','前年度比(%)','契約金額合計(契約金-損金)(円)','目標値(円)','達成率(%)','契約金額合計(円)','目標値(円)','達成率(%)'];
 		//}else{
-		//	$sbj_array=['月','累計合計(円)','目標値/入力・修正(円)','達成率(%)','前年度比(%)','目標値(円)','達成率(%)','目標値(円)','達成率(%)'];
+			$sbj_array=['月','累計合計(円)','目標値/入力・修正(円)','達成率(%)','前年度比(%)','目標値(円)','達成率(%)','目標値(円)','達成率(%)'];
 		//}
 		$htm_year_table="";
 		foreach($sbj_array as $value){

@@ -32,11 +32,13 @@
                                 </div>
                             </th>
                             <th class="border px-4 py-2">
-                                @if(session('target_branch_serial')=="01")
+                                {{--  @if(session('target_branch_serial')=="01")
                                     来店・支払い履歴
-                                @else
+                                    
+                                @else--}}
                                     契約
-                                @endif
+                                {{--@endif
+                                --}}
                             </th>
                             <th class="border px-4 py-2">
                                 <div class="text-nowrap">氏名
@@ -98,7 +100,7 @@
                                 </td>
                                 <td class="border px-4 py-2">
                                    {{-- target_branch_serial={{ session('target_branch_serial') }} --}}
-                                    @if(session('target_branch_serial')==="01")
+                                   {{--  @if(session('target_branch_serial')==="01")--}}
                                     
                                     <form method="GET" action="{{ route('customers.ShowPaymentRegistrationIflame', ['SerialKeiyaku' => 0, 'SerialUser' => $user->serial_user])}}">@csrf    
                                     {{--<form method="GET" action="/customers/ShowPaymentRegistrationIflame/0/{{$user->serial_user}}">@csrf--}}
@@ -107,19 +109,15 @@
                                             {{--  <form action="/customers/ContractList/{{$user->serial_user}}" method="GET">@csrf<input name="keiyaku_Btn" type="submit" value="来店・支払い・新規">--}}
                                             <input name="page_num" type="hidden" value="{{$users->currentPage()}}"/>
                                         </form>
+                                    {{-- 
                                     @else
                                     
                                     <form action="{{ route('customers.ContractList.get', ['UserSerial' => $user->serial_user]) }}" method="GET">@csrf
                                             <input name="keiyaku_Btn" type="submit" value="履歴・新規">
                                             <input name="page_num" type="hidden" value="{{$users->currentPage()}}"/>
                                         </form>
-                                    {{-- 
-                                        <form action="/customers/ContractList/{{$user->serial_user}}" method="GET">@csrf
-                                            <input name="keiyaku_Btn" type="submit" value="履歴・新規">
-                                            <input name="page_num" type="hidden" value="{{$users->currentPage()}}"/>
-                                        </form>
-                                     --}}
                                     @endif
+                                    --}}
                                 </td>
                                 <td class="border px-4 py-2" {!! $user->default_color!!}><div class="text-nowrap">{{ $user->name_sei}}&nbsp;{{ $user->name_mei}}</div></td>
                                 <td class="border px-4 py-2"><div class="text-nowrap">{{ $user->name_sei_kana}}&nbsp;{{ $user->name_mei_kana}}</div></td>
