@@ -25,6 +25,8 @@ function pass_ctrl(){
  let ModalData_Birthday="";
 
  $(function(){
+	//alert("test");
+	console.log("ModalData_Reservation-2");
 	$('#ReservationBirthdayModal').on('show.bs.modal', function (event) {
 		//モーダルを開いたボタンを取得
 		var button = $(event.relatedTarget);
@@ -35,13 +37,16 @@ function pass_ctrl(){
 		//受け取った値をspanタグのとこに表示some
 		document.getElementById('Reservation').innerHTML = ModalData_Reservation ;
 		document.getElementById('Birthday').innerHTML = ModalData_Birthday ;
+		console.log("ModalData_Reservation-3="+ModalData_Reservation);
 	});
   });
 
 function ShowModal(){
+	console.log("送信URL:", window.routes['ajax_get_coming_soon_user']);
 	$.ajax({
 		//url: '/ajax_get_coming_soon_user',
-		url:"{{ route('customers.ajax_staff_dell_time_card') }}",
+		url: window.routes['ajax_get_coming_soon_user'],
+		//url:"{{route('ajax_get_coming_soon_user')}}",
 		type: 'post', // getかpostを指定(デフォルトは前者)
 		dataType: 'json', 
 		scriptCharset: 'utf-8',
@@ -51,6 +56,7 @@ function ShowModal(){
 		data: {'Test': 'Test'},
 		headers: {
 			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			//'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 		}
 	}).done(function (data,dataType) {
 		let data_stringify = JSON.stringify(data);

@@ -1134,6 +1134,7 @@ class AdminController extends Controller
 	*/
 	
 	public function ajax_get_coming_soon_user(Request $request){
+		log::alert("ajax_get_coming_soon_user");
 		if(!(isset($_SESSION['PopupComingSoonFlg']) and $_SESSION['PopupComingSoonFlg']==date("Y-m-d"))){
 			//予約処理
 			$today = date("Y-m-d");$user_inf_array=array();

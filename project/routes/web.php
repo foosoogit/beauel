@@ -300,7 +300,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/top', [AdminController::class,'ShowMenuCustomerManagement'])->name('admin.top');
     Route::post('/top', [AdminController::class,'ShowMenuCustomerManagement'])->name('admin.top.post');
     Route::get('/select_branch', [AdminController::class,'ShowSelectBranch'])->name('admin.select_branch');
-    Route::post('ajax_get_coming_soon_user',[AdminController::class,'ajax_get_coming_soon_user'])->name('ajax_staff_dell_time_card');
+    Route::post('ajax_get_coming_soon_user',[AdminController::class,'ajax_get_coming_soon_user'])->name('ajax_get_coming_soon_user');
 });
 
 Route::middleware([
