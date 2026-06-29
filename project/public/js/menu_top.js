@@ -26,7 +26,7 @@ function pass_ctrl(){
 
  $(function(){
 	//alert("test");
-	console.log("ModalData_Reservation-2");
+	//console.log("ModalData_Reservation-2");
 	$('#ReservationBirthdayModal').on('show.bs.modal', function (event) {
 		//モーダルを開いたボタンを取得
 		var button = $(event.relatedTarget);

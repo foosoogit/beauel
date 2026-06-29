@@ -1134,7 +1134,7 @@ class AdminController extends Controller
 	*/
 	
 	public function ajax_get_coming_soon_user(Request $request){
-		log::alert("ajax_get_coming_soon_user");
+		//log::alert("ajax_get_coming_soon_user");
 		if(!(isset($_SESSION['PopupComingSoonFlg']) and $_SESSION['PopupComingSoonFlg']==date("Y-m-d"))){
 			//予約処理
 			$today = date("Y-m-d");$user_inf_array=array();
@@ -1145,6 +1145,7 @@ class AdminController extends Controller
 			$user_inf_array=User::where('reservation','<=',$TargetBookingDisplayDate)
 				->where('reservation','<>',null)
 				->where('reservation','>=',$today.$add_time)
+				->where('branch','=',session('target_branch_serial'))
 				->orderBy('reservation', 'asc')
 				->get();
 			$cnt_day=0;
