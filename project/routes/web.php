@@ -251,6 +251,7 @@ Route::middleware('auth:admin')->group(function () {
         })->name('CustomersList.show.post');
 
         Route::get('livewire/update', function () {
+            log::alert('target_livewire_page='.session('target_livewire_page'));
             if(session('target_livewire_page')=="ListPoints"){
                 return view('admin.ListPoints');
             }else if(session('target_livewire_page')=="ListContract"){
