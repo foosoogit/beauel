@@ -21,7 +21,7 @@ class CashBookList extends Component
     public $delTargetCashbookSerial;
 
     public function del_cash_book_rec($target_sirial){
-        //log::alert("delTargetCashbookSerial=".$this->delTargetCashbookSerial);
+        log::alert("delTargetCashbookSerial=".$this->delTargetCashbookSerial);
 		CashBook::where('id',$this->delTargetCashbookSerial)->delete();
 	}
 

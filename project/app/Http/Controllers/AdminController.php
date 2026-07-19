@@ -692,7 +692,7 @@ class AdminController extends Controller
 	}
 
 	public function ShowSelectBranch(){
-		log::alert("ipadd=".$_SERVER['REMOTE_ADDR']);
+		//log::alert("ipadd=".$_SERVER['REMOTE_ADDR']);
 		//OtherFunc::set_access_history($_SERVER['HTTP_REFERER']);
 		$select_branch_btn=OtherFunc::make_select_branch_btn();
 		return view('admin.select_branch',compact("select_branch_btn"));
