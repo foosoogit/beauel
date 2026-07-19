@@ -149,11 +149,6 @@
                             <td class="border px-4 py-2">{{ $dCashBookQuery->balanceAddYen}}</td>
                             <td class="border px-4 py-2">{{ $dCashBookQuery->remarks}}</td>
                             <td class="border px-4 py-2">
-                                {{-- 
-                                <button type="button" wire:click="del('{{$dCashBookQuery->id}}')" id="delete_btn_{{$dCashBookQuery->id}}" class="btn btn-danger modalBtn btn-sm">
-                                削除
-                                </button>
-                                 --}}
                                 <button type="button" id="delete_btn_{{$dCashBookQuery->id}}" class="btn btn-danger modalBtn btn-sm" 
                                 data-bs-toggle="modal" 
                                 data-bs-target="#delConfirmModal" 
@@ -226,19 +221,6 @@
                                     <p>{{ $message }}</p>
                                 @enderror
                             </div>
-                            {{-- 
-                            <div class="row p-2">
-                                 <div class="col-auto">
-                                    <label><input type="radio" name="payment_deposit_rdo1" id="payment1" onclick="payment_deposit_rdo_manage(this);" value='payment'>出金</label>
-                                </div>
-                                <div class="col-auto">
-                                    <label><input type="radio" name="payment_deposit_rdo1" id="deposit1" onclick="payment_deposit_rdo_manage(this);" value='deposit'>入金</label>
-                                </div>
-                                <div class="col-auto">
-                                    <label><input type="radio" name="payment_deposit_rdo1" id="transfer1" onclick="payment_deposit_rdo_manage(this);" value='payment'>小口出納帳へ</label>
-                                </div>
-                            </div>
-                             --}}
                             <div class="row p-2">
                                 <div class="col-auto">
                                     <label>日付：<input type="date" name="target_date" id="target_date" wire:model="target_date"></label>
@@ -262,13 +244,6 @@
                                     ※リストから選択できます。リストにない場合は、直接入力してください。
                                 </div>
                             </div>
-                                {{-- 
-                                <div class="row p-2">
-                                    <div class="col-auto">
-                                        <span id="summary_span"></span>
-                                    </div>        
-                                </div>
-                                 --}}
                             <div class="row p-2">
                                 <div class="col-auto">
                                     <label>金額：<input type="number" id="amount" name="amount" wire:model="amount"/></label>円
@@ -289,7 +264,6 @@
                 </div>
             </div>
 		</div>
-
             <!--　削除確認 -->
             <div class="modal fade" id="delConfirmModal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-lg">

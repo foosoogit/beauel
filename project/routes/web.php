@@ -260,6 +260,7 @@ Route::middleware('auth:admin')->group(function () {
              }else if(session('target_livewire_page')=="ListStaffInOut"){
                 return view('admin.ListStaffInOutHistories');
             }else if(session('target_livewire_page')=="CashBookList"){
+                log::alert("livewire/update CashBookList");
                 return view('admin.CashBookList');
             }
             /*

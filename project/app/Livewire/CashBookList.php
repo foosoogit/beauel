@@ -20,10 +20,7 @@ class CashBookList extends Component
     public $test,$kensakukey,$target_date,$payment,$deposit,$summary,$amount,$remarks,$id_txt,$serch_key_month,$serch_key_date,$serch_key_all,$serch_key_payment,$serch_key_deposit,$sort_key_p ,$asc_desc_p;
 
     public function del_cash_book_rec($target_sirial){
-		/*
-        CashBook::where('id',$target_Vsirial)
-			->update(['visit_history_serial' => "del_".$target_Vsirial]);
-        */
+        log::alert("del_cash_book_rec target_sirial=".$target_sirial);
 		CashBook::where('id',$target_sirial)->delete();
 	}
 
@@ -71,15 +68,6 @@ class CashBookList extends Component
         }else{
             session(['serch_payment_flg' => "checked"]);
         }
-        /*
-        session([
-            'sort_key_cashbook' =>'target_date',
-            'asc_desc_cashbook' =>'desc',
-            'serch_key_all_cashbook_cashbook' =>'',
-            'serch_key_month_CashBook' =>'',
-            'serch_key_date_CashBook' =>''
-        ]);
-        */
     }
     
     public function serch_deposit(){
@@ -88,15 +76,6 @@ class CashBookList extends Component
         }else{
             session(['serch_deposit_flg' => "checked"]);
         }
-        /*
-        session([
-            'sort_key_cashbook' =>'target_date',
-            'asc_desc_cashbook' =>'desc',
-            'serch_key_all_cashbook' =>'',
-            'serch_key_month_CashBook' =>'',
-            'serch_key_date_CashBook' =>''
-        ]);
-        */
     }
 
     public function search_month(){
@@ -124,6 +103,7 @@ class CashBookList extends Component
     }
 
     public function del($id){
+        log::alert("del id=".$id);
         $CashBook = CashBook::find($id);
         $CashBook->delete();
     }

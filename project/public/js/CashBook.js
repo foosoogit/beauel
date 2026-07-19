@@ -60,7 +60,6 @@ $(function(){
       modal_obj.find('.modal-body input#summary').val(summary);
       amount=button.data('payment');
       if (summary=="小口現金へ") {
-        //console.log("小口出納帳へ");
         amount=button.data('payment');
         document.getElementById('transfer').checked=true;
       }else if (!amount) {
@@ -136,7 +135,6 @@ function searchClearManage(){
     document.getElementById('kensakukey_txt').value='';
     document.getElementById('month').value='';
     document.getElementById('date').value='';
-    //console.log("searchClearManage");
 }
 
 function p_d_manage(){
