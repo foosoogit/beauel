@@ -308,8 +308,23 @@
                             上記データを削除します。よろしいですか？
                         </div>
                         <div class="modal-footer">
+                             
                             <input type="hidden" id="delTargetCashbookSerial_hdn">
+                             {{--
+                            <input
+                                type="hidden"
+                                id="delTargetCashbookSerial_hdn"
+                                wire:model="delTargetCashbookSerial"
+                            >
+                            --}}
                             <button type="button" id="del_btn" wire:click="del_cash_book_rec(document.getElementById('delTargetCashbookSerial_hdn').value)" class="btn btn-danger">削除</button>
+                            <button type="button" id="del_wire_btn" wire:click="del_cash_book_rec('')" class="btn btn-danger"
+                                x-data
+                                @click="$wire.set(
+                                    'delTargetCashbookSerial',
+                                    document.getElementById('delTargetCashbookSerial_hdn').value
+                                )"
+                                >jsで削除</button>
                             <button type="button" class="btn btn-info" data-bs-dismiss="modal">キャンセル</button>
                         </div>
                     </div>

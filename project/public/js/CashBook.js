@@ -95,6 +95,12 @@ $(function(){
 });
 
 $(function(){
+  $("#del_wire_btn").on('click', function() {
+    $('#delConfirmModal').modal('hide');
+  })
+});
+
+$(function(){
   $("#del_btn").on('click', function() {
     $('#delConfirmModal').modal('hide');
   })
@@ -120,6 +126,7 @@ $(function(){
     }
     remarks = button.data('remarks');
     document.getElementById("delTargetCashbookSerial_hdn").value=serial;
+
     modal_delConfirm.find('.modal-body span#serial').text(serial);
     modal_delConfirm.find('.modal-body span#t_date').text(t_date);
     modal_delConfirm.find('.modal-body span#summary').text(summary);

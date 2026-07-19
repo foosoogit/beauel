@@ -18,10 +18,11 @@ class CashBookList extends Component
 {
     use WithPagination;
     public $test,$kensakukey,$target_date,$payment,$deposit,$summary,$amount,$remarks,$id_txt,$serch_key_month,$serch_key_date,$serch_key_all,$serch_key_payment,$serch_key_deposit,$sort_key_p ,$asc_desc_p;
+    public $delTargetCashbookSerial;
 
     public function del_cash_book_rec($target_sirial){
-        log::alert("del_cash_book_rec target_sirial=".$target_sirial);
-		CashBook::where('id',$target_sirial)->delete();
+        //log::alert("delTargetCashbookSerial=".$this->delTargetCashbookSerial);
+		CashBook::where('id',$this->delTargetCashbookSerial)->delete();
 	}
 
     public function sort($sort_key){
@@ -101,12 +102,12 @@ class CashBookList extends Component
             'serch_key_date_CashBook' => $this->serch_key_date
         ]);
     }
-
-    public function del($id){
-        log::alert("del id=".$id);
+        public function del($id){
+        log::alert("delTargetCashbookSerial=".$this->delTargetCashbookSerial);
         $CashBook = CashBook::find($id);
         $CashBook->delete();
     }
+
     public function submitForm(Request $request){
         $validator = Validator::make($request->all(), [
             'components.0.updates.target_date' => 'required',
