@@ -11,7 +11,7 @@
 		@livewireStyles
 	</head>
 	<body>
-		@livewireScripts
+		
 		<div class="table-responsive">
 			<p><livewire:cash-book-list /></p>
 		</div>
@@ -23,5 +23,6 @@
 		{{--<script src="https://code.jquery.com/jquery3.6.1.js"></script>--}}
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
 		<script  type="text/javascript" src="{{ asset('/js/CashBook.js?20240123') }}"></script>
+		@livewireScripts
 	</body>
 </html>
