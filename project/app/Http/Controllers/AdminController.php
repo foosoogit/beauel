@@ -2014,9 +2014,6 @@ class AdminController extends Controller
 	}
 	
 	public function SaveTreatment(Request $request){
-		//log::alert("TreatmentContent_name=".$request->serial_TreatmentContent);
-		//TreatmentContent::where('serial_treatment_contents','=', $request->serial_TreatmentContent)->restore();
-		//$count = TreatmentContent::where('serial_treatment_contents','=', $request->serial_TreatmentContent)->count();
 		$targetData=[
 			'created_at' => date('Y-m-d H:i:s'),
 			'serial_treatment_contents' => $request->serial_TreatmentContent,

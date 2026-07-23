@@ -28,7 +28,7 @@ input,textarea{
 			@endif
 			<form action="{{route('admin.saveTreatment.post')}}" method="POST" name="inp_Treatment_fm" id="inp_Treatment_fm" class="h-adr">@csrf
 	        	@if ($btnDisp=="修正")
-					<p><div class="mb-2 bg-secondary text-white"><span class="border border-success bg-success text-white rounded h5">&nbsp;{{session('target_branch_name')}}&nbsp;</span>&nbsp;&nbsp;術データ修正</div></p>
+					<p><div class="mb-2 bg-secondary text-white"><span class="border border-success bg-success text-white rounded h5">&nbsp;{{session('target_branch_name')}}&nbsp;</span>&nbsp;&nbsp;施術データ修正</div></p>
 					<p  style="text-indent:20px" class="py-1.5">施術番号<input type="text" name="serial_TreatmentContent" value="{{$TreatmentSerial}}" class="bg-white-500 border-solid pxtext-black rounded px-3 py-1" tabindex="1" readonly></p>
 				@else
 					<p><div class="mb-2 bg-secondary text-white"><span class="border border-success bg-success text-white rounded h5">&nbsp;{{session('target_branch_name')}}&nbsp;</span>&nbsp;&nbsp;新規施術登録</div> </p>
