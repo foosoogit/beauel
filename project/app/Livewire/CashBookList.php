@@ -12,6 +12,7 @@ use App\Models\CashBook;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Support\Facades\DB;
+
 if(!isset($_SESSION)){session_start();}
 
 class CashBookList extends Component

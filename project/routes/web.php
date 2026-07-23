@@ -13,6 +13,7 @@ use App\Http\Livewire\MonthlyReport;
 use App\Http\Livewire\ContractsReport;
 use App\Http\Livewire\YearlyReport;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+//use Livewire\Controllers\HttpController;
 
 if(!isset($_SESSION)){session_start();}
 /*
@@ -34,6 +35,11 @@ Route::get('/', function () {
 Route::get('/login_customer', function () {
     return view('customer.LoginProtector');
 })->name('customer.login');
+*/
+/*
+Route::post('/livewire/update', [HttpController::class, 'update'])
+    ->name('livewire.update')
+    ->middleware(['web']);
 */
 // 顧客受付
 Route::get('admin/StaffStandbyDisplay', [AdminController::class,'ShowStaffStandbyDisplay'])->name("admin.StaffStandbyDisplay.get");
