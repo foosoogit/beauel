@@ -1783,8 +1783,8 @@ class AdminController extends Controller
 		}else{
 			$TreatmentContentInf=TreatmentContent::where('serial_treatment_contents','=',$TreatmentSerial)->first();
 			$btnDisp="修正";
-			$targetTreatmentContentSerial=$TreatmentContentSerial;
-			session(['targetGoodSerial' => $TreatmentContentSerial]);
+			$targetTreatmentContentSerial=$TreatmentSerial;
+			session(['targetGoodSerial' => $TreatmentSerial]);
 			return view('admin.InpTreatment',compact('target_historyBack_inf_array','TreatmentSerial','TreatmentContentInf',"GoBackPlace","btnDisp"));
 		}
 	}
@@ -2014,6 +2014,9 @@ class AdminController extends Controller
 	}
 	
 	public function SaveTreatment(Request $request){
+		//log::alert("TreatmentContent_name=".$request->serial_TreatmentContent);
+		//TreatmentContent::where('serial_treatment_contents','=', $request->serial_TreatmentContent)->restore();
+		//$count = TreatmentContent::where('serial_treatment_contents','=', $request->serial_TreatmentContent)->count();
 		$targetData=[
 			'created_at' => date('Y-m-d H:i:s'),
 			'serial_treatment_contents' => $request->serial_TreatmentContent,
@@ -2023,7 +2026,10 @@ class AdminController extends Controller
 			'treatment_details' => $request->TreatmentContent_details,
 			'memo' => $request->memo,
 		];
-		TreatmentContent::upsert($targetData,['serial_treatment_contents']);
+		TreatmentContent::upsert([$targetData],
+			['serial_treatment_contents'],
+			['name_treatment_contents','name_treatment_contents_kana','treatment_details','memo','branch']
+		);
 		session()->flash('success', '登録しました。');
 		$this::save_recorder("SaveTreatmentContent");
 		return redirect('/admin/TreatmentList');

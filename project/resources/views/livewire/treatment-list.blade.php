@@ -90,7 +90,13 @@
                             <tbody>
                                 @foreach ($treatment_contents as $treatment_content)
                                     <tr>
-                                        <td class="border px-4 py-2"><form action="/workers/ShowSyuseiTreatmentContent/{{ $treatment_content->serial_treatment_contents}}" method="GET">@csrf<input name="syusei_Btn" type="submit" value="{{ $treatment_content->serial_treatment_contents}}"></form></td>
+                                        <td class="border px-4 py-2">
+                                            {{-- 
+                                            <form action="/workers/ShowSyuseiTreatmentContent/{{ $treatment_content->serial_treatment_contents}}" method="GET">@csrf<input name="syusei_Btn" type="submit" value="{{ $treatment_content->serial_treatment_contents}}"></form>
+                                             --}}
+                                            <form action="{{ route('admin.InpTreatment.get', ['TreatmentContentSerial' => $treatment_content->serial_treatment_contents]) }}" method="GET">@csrf<input name="syusei_Btn" type="submit" value="{{ $treatment_content->serial_treatment_contents}}"></form>
+                                        
+                                        </td>
                                         <td class="border px-4 py-2">{{ $treatment_content->name_treatment_contents}}</td>
                                         <td class="border px-4 py-2">{{ $treatment_content->name_treatment_contents_kana}}</td>
                                         <td class="border px-4 py-2" style="text-align: left;">{{ $treatment_content->treatment_details }}</td>

@@ -175,7 +175,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::post('admin/send_QRcode_to_staff', [AdminController::class,'send_QRcode_to_staff'])->name("SendQRcodeToStaff.post");
 
         Route::get('admin/InOutStandbyDisplay', [AdminController::class,'ShowInOutStandbyDisplay'])->name("InOutStandbyDisplay.get");
-        Route::post('/admin/saveTreatment/', [AdminController::class,'saveTreatment',function(Request $request){}])->name('saveTreatment.post');
+        Route::post('/admin/saveTreatment/', [AdminController::class,'SaveTreatment',function(Request $request){}])->name('saveTreatment.post');
         Route::get('/admin/deleteTreatmentContent/{serial_TreatmentContent}',[AdminController::class,'deleteTreatmentContent'],function($serial_TreatmentContent){})->name('deleteTreatmentContent.get');
         Route::get('/admin/InpTreatment/{TreatmentContentSerial}', [AdminController::class,'InpTreatment',function($TreatmentSerial){}])->name('InpTreatment.get');
         Route::get('/admin/TreatmentList', function () {
