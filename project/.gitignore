@@ -17,3 +17,11 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+# 追加推奨
+config/livewire.php
+public/vendor/
+vendor/
+*.xlsx
+storage/images/
+# バックアップフォルダ
+public/vendor/livewire_backup/
