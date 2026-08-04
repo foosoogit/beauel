@@ -171,6 +171,7 @@
 									</form>
 								</li>
 							</div>
+							{{-- 
 							<div class="col-auto">
 								<li>
 									<form method="GET" action="{{route('customers.PaymentHistory.get')}}">@csrf
@@ -180,6 +181,7 @@
 										<button class="btn btn-primary btn-sm" type="submit">支払い履歴テスト</button>
 									</form>
 								</li>
+								
 								<li>
 									<form method="GET" action="{{route('customers.VisitHistory.get')}}">@csrf
 										@php
@@ -190,6 +192,7 @@
 									</form>
 								</li>
 							</div>
+							 --}}
 							{{-- 
 							<div class="col-auto">
 								<li>
