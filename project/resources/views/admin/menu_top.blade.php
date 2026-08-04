@@ -75,6 +75,7 @@
 								</form>
 							</li>
 							<div class="row">
+								{{-- 
 								<div class="col-auto">
 									<li>
 										<form method="GET" action="{{ route('admin.ListPoints.get') }}">@csrf
@@ -82,6 +83,7 @@
 										</form>
 									</li>
 								</div>
+								
 								<div class="col-auto">
 									<li>
 										<form method="GET" action="/workers/ShowCampaigns">@csrf
@@ -89,6 +91,7 @@
 										</form>
 									</li>
 								</div>
+								 --}}
 							<li>
 								<a href="{{ route('admin.show_setting') }}" class="btn btn-primary btn-sm">環境設定</a>
 							</li>

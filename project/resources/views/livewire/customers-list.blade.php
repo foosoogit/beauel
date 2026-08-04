@@ -75,12 +75,14 @@
                                     <button type="button" wire:click="sort('phone-Desc')"> <img src="{{asset('images/sort_Z_A.png')}}" width="15px" /></button>
                                 </div>
                             </th>
+                            {{-- 
                             <th class="border px-4 py-2">取得ポイント
                                 <div>
                                     <button type="button" wire:click="sort('total_points-ASC')"><img src="{{asset('images/sort_A_Z.png')}}" width="15px" disabled/></button>
                                     <button type="button" wire:click="sort('total_points-Desc')"><img src="{{asset('images/sort_Z_A.png')}}" width="15px" disabled/></button>
                                 </div>
                             </th>
+                             --}}
                             <th class="border px-4 py-2">予約日入力
                                 <div>
                                     <button type="button" wire:click="sort('yoyaku-ASC')"><img src="{{asset('images/sort_A_Z.png')}}" width="15px" disabled/></button>
@@ -126,7 +128,9 @@
                                  --}}
                                 <td class="border px-4 py-2"><div class="text-nowrap">{{ $user->birth_year}}-{{ $user->birth_month}}-{{ $user->birth_day}}&nbsp;({{ $user->User_Age}})</div></td>
                                 <td class="border px-4 py-2">{{ $user->phone}}</td>
+                                {{-- 
                                 <td class="border px-4 py-2">{{ $user->TotalPoints}}</td>
+                                 --}}
                                 <td class="border px-4 py-2">
                                      @if(empty($user->reservation))
                                         <button type="button" id="yoyaku_btn_{{$user->serial_user}}" class="btn btn-info modalBtn btn-sm" data-toggle="modal" data-target="#YoyakuModal" data-watasu="" data-serial="{{$user->serial_user}}" data-name="{{ $user->name_sei}}&nbsp;{{ $user->name_mei}}">予約日</button>
