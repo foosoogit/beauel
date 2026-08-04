@@ -18,10 +18,44 @@ function delArert(targetUser){
 }
 
 $(function(){
-  $("#del_btn").on('click', function() {
+  $("#del_wire_btn").on('click', function() {
     $('#delConfirmModal').modal('hide');
   })
 });
+
+/*
+$(function(){
+  $("#del_btn").on('click', function() {
+      console.log("del_btn");
+      let Tvisit_history_serial=document.getElementById("visit_history_serial_d").innerText;
+      console.log("Tvisit_history_serial="+Tvisit_history_serial);
+      $.ajax({
+        //url: "customers/del_visit_data_ajax",
+        url: "{{ route('customers.del_visit_data_ajax.post') }}",
+        type: 'post', // getかpostを指定(デフォルトは前者)
+        dataType: 'text', 
+        scriptCharset: 'utf-8',
+        frequency: 10,
+        cache: false,
+        async : false,
+        data: {"Tvisit_history_serial": Tvisit_history_serial},
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      }).done(function (data) {
+        location.replace(location.href);
+        $msg= "削除しました。";
+		  	alert($msg);
+      }) .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        alert(XMLHttpRequest.status);
+        alert(textStatus);
+        alert(errorThrown);	
+        alert('エラー');
+      });
+    $('#delConfirmModal').modal('hide');
+  })
+});
+*/
 
 $(function(){
   $('#delConfirmModal').on('show.bs.modal', function (event) {
@@ -29,21 +63,22 @@ $(function(){
     let button = $(event.relatedTarget);
     //モーダルを取得
     let modal_delConfirm = $(this);
-    let visit_history_serial,num,sejyutu_naiyou,visit_date,name;
-    name = button.data('name');
-    num = button.data('num');
+    let visit_history_serial=document.getElementById("visit_history_serial").innerText;
+
+    const visit_num=Number(visit_history_serial.slice(-2));
+    let name = button.data('name');
+    let num = button.data('num');
     sejyutu_naiyou = button.data('sejyutu_naiyou');
-    sejyutusya= button.data('sejyutusya');
-    visit_date = button.data('visit_date');
+    let sejyutusya= button.data('sejyutusya');
+    let visit_date = button.data('visit_date');
     visit_history_serial = button.data('visit_history_serial');
     document.getElementById("delTargetVisitHistorySerial_hdn").value=visit_history_serial;
     modal_delConfirm.find('.modal-body span#visit_date_d').text(visit_date);
     modal_delConfirm.find('.modal-body span#tr_d').text(sejyutu_naiyou);
-    modal_delConfirm.find('.modal-body span#num_d').text(num);
-    modal_delConfirm.find('.modal-body span#visit_date_d').text(visit_date);
-    modal_delConfirm.find('.modal-body span#visit_history_serial_d').text(visit_history_serial);
+    //modal_delConfirm.find('.modal-body span#visit_date_d').text(visit_date);
+    modal_delConfirm.find('.modal-body span#visit_history_serial_d').text(visit_history_serial.slice(-2));
     modal_delConfirm.find('.modal-body span#sejyutusya_d').text(sejyutusya);
-    modal_delConfirm.find('.modal-body span#name_d').text(name);
+    //modal_delConfirm.find('.modal-body span#name_d').text(name);
   });
 });
 
@@ -51,17 +86,19 @@ $(function(){
   // モーダルの中の「ボタン1」を押した時の処理
     $("#btn1").on('click', function() {
       let Tdate=document.getElementById("visit_date").value;
-      let Tvisit_history_serial=document.getElementById("visit_history_serial").innerText;
+      let Tvisit_history_serial=document.getElementById("TargetVisitHistorySerial_hdn").value;
+      //let Tvisit_history_serial=document.getElementById("visit_history_serial").innerText;
       let Ttr_content=document.getElementById("tr_content_slct").value;
       //let Tpoint=document.getElementById("point").value;
       if(Ttr_content==0){
         alert("施術内容を選択してください。");
         return false;
       }
-      //console.log("Ttr_content="+Ttr_content);
       $('#ModifyModal').modal('hide');
       $.ajax({
         url: "save_visit_data_ajax",
+        //url: "{{ route('customers.save_visit_data_ajax.post') }}",
+        //url: @json(route('customers.save_visit_data_ajax')),
         type: 'post', // getかpostを指定(デフォルトは前者)
         dataType: 'text', 
         scriptCharset: 'utf-8',
@@ -92,7 +129,7 @@ $(function(){
 
 function gettreatmentslct(target){
 	  $.ajax({
-			//url: '{{route("make_htm_get_treatment_slct_ajax")}}',
+			//url: '{{route("customers.make_htm_get_treatment_slct_ajax")}}',
       url: 'make_htm_get_treatment_slct_ajax',
 			type: 'post', // getかpostを指定(デフォルトは前者)
 			dataType: 'text', // 「json」を指定するとresponseがJSONとしてパースされたオブジェクトになる
@@ -105,6 +142,7 @@ function gettreatmentslct(target){
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			}
 		}).done(function (data) {
+      console.log("data="+data);
       document.getElementById("tr").innerHTML=data;
 		}) .fail(function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(XMLHttpRequest.status);
@@ -116,33 +154,45 @@ function gettreatmentslct(target){
 
 $(function(){
   $('#ModifyModal').on('show.bs.modal', function (event) {
-    let visit_history_serial,num,sejyutu_naiyou,visit_date,newSerial,name;
+    let visit_history_serial,sejyutu_naiyou,visit_date,newSerial,name;
     //モーダルを開いたボタンを取得
     let button = $(event.relatedTarget);
     //モーダルを取得
     let modal_Yoyaku = $(this);
     name = button.data('name');
+    let num = button.data('num');
     newSerial=button.data('nserial');
-    
-    if(typeof newSerial === 'undefined'){
+    //console.log("num="+num);
+    //visit_history_serial = button.data('visit_history_serial');
+    //if(typeof newSerial === 'undefined'){
+    if(typeof num !== 'undefined'){
+      visit_history_serial = button.data('visit_history_serial');
+      //console.log("visit_history_serial="+visit_history_serial);
+      const visit_num=Number(visit_history_serial.slice(-2));
+      document.getElementById("TargetVisitHistorySerial_hdn").value=visit_history_serial;
       num = button.data('num');
       sejyutu_naiyou = button.data('sejyutu_naiyou');
       sejyutusya= button.data('sejyutusya');
       visit_date = button.data('visit_date');
       visit_history_serial = button.data('visit_history_serial');
       tr_html=gettreatmentslct(sejyutu_naiyou);
-      modal_Yoyaku.find('.modal-body span#num').text(num);
-      modal_Yoyaku.find('.modal-body span#visit_history_serial').text(visit_history_serial);
+      //modal_Yoyaku.find('.modal-body span#num').text(cnt);
+      modal_Yoyaku.find('.modal-body span#visit_history_serial').text(visit_history_serial.slice(-2));
       modal_Yoyaku.find('.modal-body span#sejyutusya').text(sejyutusya);
       modal_Yoyaku.find('.modal-body input#visit_date').val(visit_date);
+      modal_Yoyaku.find('.modal-title').text("来店記録修正");
     }else{
       tr_html=gettreatmentslct('');
-      let newSerial_array=newSerial.split('-');
+      //console.log("newSerial-3="+newSerial);
+      newSerial_array=newSerial.split('-');
+      //console.log("newSerial_array ="+newSerial_array[2]);
       modal_Yoyaku.find('.modal-body span#num').text(newSerial_array[2]);
-      modal_Yoyaku.find('.modal-body span#visit_history_serial').text(newSerial);
+      modal_Yoyaku.find('.modal-body span#visit_history_serial').text(newSerial.slice(-2));
       modal_Yoyaku.find('.modal-body input#visit_date').val("");
+      modal_Yoyaku.find('.modal-title').text("新規来店記録登録");
+      document.getElementById("TargetVisitHistorySerial_hdn").value=newSerial;
+      //document.getElementById("TargetVisitHistorySerial_hdn").value=visit_history_serial;
+      //document.getElementById('ModalLabel').innerText="新規来店記録登録";
     }
-      //受け取った値をspanタグのとこに表示some
-    modal_Yoyaku.find('.modal-body span#name').text(name);
   });
 });

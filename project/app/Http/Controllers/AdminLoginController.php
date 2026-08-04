@@ -28,6 +28,7 @@ class AdminLoginController extends Controller
          
         $request->authenticate();
         $request->session()->regenerate();
+        Log::info($request);
         return redirect()->intended(route('admin.select_branch'));
         //return redirect()->intended(route('admin.top'));
      }

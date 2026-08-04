@@ -9,8 +9,44 @@ function radioDeselection(already, numeric) {
 }
 
 $(function(){
+  $("#del_wire_btn").on('click', function() {
+    $('#delConfirmModal').modal('hide');
+  })
+});
+
+$(function(){
 	$("#del_btn").on('click', function() {
-		//console.log("delConfirmModal-2");
+		console.log("delConfirmModal-4");
+		let Tpayment_history_serial=document.getElementById("payment_history_serial_d").innerText;
+      	console.log("Tpayment_history_serial="+Tpayment_history_serial);
+		$("#del_btn").on('click', function(Tpayment_history_serial) {
+		//let Tpayment_history_serial=document.getElementById("payment_history_serial_d").innerText;
+      	console.log("Tpayment_history_serial="+Tpayment_history_serial);
+		$.ajax({
+			//url: "del_payment_history_ajax",
+			url: "{{ route('customers.del_payment_history_ajax.post') }}",
+			type: 'post', // getかpostを指定(デフォルトは前者)
+			dataType: 'text', 
+			scriptCharset: 'utf-8',
+			frequency: 10,
+			cache: false,
+			async : false,
+			data: {"Tpayment_history_serial": Tpayment_history_serial},
+			headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		}).done(function (data) {
+			location.replace(location.href);
+			$msg= "削除しました。";
+				alert($msg);
+		}) .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+			alert(XMLHttpRequest.status);
+			alert(textStatus);
+			alert(errorThrown);	
+			alert('エラー');
+		});
+		$('#delConfirmModal').modal('hide');
+	})
 		$('#delConfirmModal').modal('hide');
 	})
 	// モーダルの中の「ボタン1」を押した時の処理
@@ -44,7 +80,7 @@ $(function(){
 			if(data=="1"){
 				$msg= "登録しました。";
 			}
-		  	//alert($msg);
+		  	alert($msg);
 		}) .fail(function (XMLHttpRequest, textStatus, errorThrown) {
 		  alert(XMLHttpRequest.status);
 		  alert(textStatus);
@@ -100,7 +136,7 @@ $(function(){
 		modal_payment.find('.modal-body span#payment_history_serial_d').text(payment_history_serial);
 		  //受け取った値をspanタグのとこに表示some
 		modal_payment.find('.modal-body span#name_d').text(name);
-		console.log("name="+name);
+		//console.log("name="+name);
 	  });
 
 	$('#ModifyModal').on('show.bs.modal', function (event) {

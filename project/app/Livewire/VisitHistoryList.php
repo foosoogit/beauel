@@ -21,12 +21,46 @@ class VisitHistoryList extends Component
 	public $Vtarget_treatment="",$Vdynamic_key,$Vserch_key,$Vsort_key,$Vsort_type="desc";
 	public $livewire_cnt=0;
 	public $delTargetVisitHistorySerial;
+	//public $delTargetCashbookSerial;
 	public $Vkensakukey="";
 	public function target_sejyutu($treatment){
 		$this->$Vtarget_treatment=$treatment;
 	}
+/*
+	#[On('setSerial')]
+public function setSerial($serial)
+{
+    $this->delTargetVisitHistorySerial = $serial;
+	log::alert("delTargetVisitHistorySerial=".$this->delTargetVisitHistorySerial);
+	 $this->skipRender();
+}
+*/
 
-	public function del_visit_history($target_Vsirial){
+public function deldel_visit_history_rec(){
+		VisitHistory::where('payment_history_serial',$target_Psirial)
+			->update(['payment_history_serial' => "del_".$target_Psirial]);
+		VisitHistory::where('payment_history_serial',"del_".$target_Psirial)->delete();
+	}
+
+	public function del_visit_history_rec($target_sirial){
+        //log::alert("delTargetCashbookSerial=".$this->delTargetVisitHistorySerial);
+		VisitHistory::where('visit_history_serial',$this->delTargetVisitHistorySerial)->delete();
+	}
+
+	/*
+	public function setDelTargetVisitHistorySerial($serial)
+	{
+		$this->delTargetVisitHistorySerial = $serial;
+	}
+	*/	
+
+	public function del_visit_history(){
+		$target_Vsirial = $this->delTargetVisitHistorySerial;
+		//$target_Vsirial = $this->delTargetVisitHistorySerial;
+		//$target_Vsirial=$this->delTargetVisitHistorySerial;	
+		log::alert("target_Vsirial 2=".$target_Vsirial);
+		log::alert("delTargetVisitHistorySerial 2=".$this->delTargetVisitHistorySerial);
+		
 		VisitHistory::where('visit_history_serial',$target_Vsirial)
 			->update(['visit_history_serial' => "del_".$target_Vsirial]);
 		VisitHistory::where('visit_history_serial',"del_".$target_Vsirial)->delete();
@@ -62,6 +96,7 @@ class VisitHistoryList extends Component
 	
     public function render()
     {
+		//log::alert("VisitHistoryList render");
 		if($this->Vsort_key<>session('sort_key_VH')){
 			$this->Vsort_key=session('sort_key_VH');
 		}else{
@@ -97,19 +132,21 @@ class VisitHistoryList extends Component
 		$VisitHistoryQuery=$VisitHistoryQuery->leftJoin('staff', 'visit_histories.serial_staff', '=', 'staff.serial_staff');
 		$VisitHistoryQuery=$VisitHistoryQuery->orderBy("visit_history_serial", "desc");
 		if(session('targetKeiyakuSerial')=="0"){
-			$newVisitHistorySerial=VisitHistory::where('serial_user','=',session('target_user_serial'))->max('visit_history_serial');
+			$newVisitHistorySerial=VisitHistory::where('serial_user','=',session('target_user_serial'))->withTrashed()->max('visit_history_serial');
 			if(empty($newVisitHistorySerial)){
 				$newVisitHistorySerial='V_'.session('target_user_serial').'-0000-01';
 			}
 			$newVisitHistorySerial++;
 		}else{
-			$newVisitHistorySerial=VisitHistory::where('serial_keiyaku','=',session('targetKeiyakuSerial'))->max('visit_history_serial');
+			$newVisitHistorySerial=VisitHistory::where('serial_keiyaku','=',session('targetKeiyakuSerial'))->withTrashed()->max('visit_history_serial');
 			if(empty($newVisitHistorySerial)){
 				$newVisitHistorySerial=str_replace('K', 'V', session('targetKeiyakuSerial')).'-01';
 			}else{
 				$newVisitHistorySerial=++$newVisitHistorySerial;
 			}
 		}
+		
+		//log::alert("newVisitHistorySerial=".$newVisitHistorySerial);
 		if(session('targetKeiyakuSerial')==0){
 			$UserInf=User::where('serial_user','=',session('target_user_serial'))->first();
 		}else{

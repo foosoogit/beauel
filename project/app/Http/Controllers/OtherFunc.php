@@ -47,6 +47,17 @@ class OtherFunc extends Controller
 		return $htm_summary_slct;
 	}
 	*/
+
+	public function del_visit_data_ajax(Request $request){
+		Log::info($request);
+		VisitHistory::where('visit_history_serial',$request->Tvisit_history_serial)->delete();
+	}
+
+	public function del_payment_history_ajax(Request $request){
+		Log::info($request);
+		PaymentHistory::where('payment_history_serial',$request->Tpayment_history_serial)->delete();
+	}
+
 	public static function set_target_balance_to_CashBookSmallDb($target_id){
 		$balance_tatal=0;
 		$Branch_inf_array=Branch::get();
@@ -891,6 +902,7 @@ class OtherFunc extends Controller
 	}
 
 	public function save_visit_data_ajax(Request $request){
+		log::alert("save_visit_data_ajax");
 		if(session('targetKeiyakuSerial')==0){
 			session(['targetKeiyakuSerial' => 'K_'.session('target_user_serial')."-0000"]);
 			$seriar_user=session('target_user_serial');
@@ -972,13 +984,16 @@ class OtherFunc extends Controller
 	
 	public static function make_htm_get_treatment_slct_ajax(Request $request){
 		$TargetTreatmentName=$request->target;
+		//log::alert("target=".$request->target);
 		$htm_TreatmentsName_slct='<select name="tr_content_slct" id="tr_content_slct">';
 		$htm_TreatmentsName_slct.=OtherFunc::make_htm_get_treatment_slct($request->target);
 		$htm_TreatmentsName_slct.='</select>';
+		//log::alert("htm_TreatmentsName_slct=".$htm_TreatmentsName_slct);
 		echo $htm_TreatmentsName_slct;
 	}
 
 	public static function make_htm_get_treatment_slct($TargetTreatmentName){
+		//log::alert("TargetTreatmentName=".$TargetTreatmentName);
 		$kana = array(
 			"ア行" => "[ア-オあ-お]",
 			"カ行" => "[カ-コガ-ゴか-こが-ご]",
@@ -992,7 +1007,8 @@ class OtherFunc extends Controller
 			"ワ行" => "[ワ-ンわ-ん]",
 			"その他" => ".*"
 		);
-		$treatmentInfArray=TreatmentContent::where('branch',session('target_branch_serial'))->orderBy('name_treatment_contents_kana')->get();
+		//$treatmentInfArray=TreatmentContent::where('branch',session('target_branch_serial'))->orderBy('name_treatment_contents_kana')->get();
+		$treatmentInfArray=TreatmentContent::orderBy('name_treatment_contents_kana')->get();
 		$htm_TreatmentsName_slct='<option value=0>-- 選択してください --</option>';
 		$tgtGrp="";
 		foreach($treatmentInfArray as $value){
@@ -1037,7 +1053,7 @@ class OtherFunc extends Controller
 		);
 		// Create generic logo
 		$logo = new Logo(
-			path: storage_path('images/Nagano_image.png'),
+			path: storage_path('images/image.png'),
 			resizeToWidth: 50,
 			punchoutBackground: true
 		);

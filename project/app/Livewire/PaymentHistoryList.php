@@ -18,13 +18,15 @@ class PaymentHistoryList extends Component
     use WithPagination;
 	public $targetPage=null;
 	public $dynamic_key,$serch_key,$sort_key,$sort_type="desc";
+	public $delTargetPaymentHistorySerial;
 	public $livewire_cnt=0;
 	public $kensakukey="";
-	
-	public function del_payment_history($target_Psirial){
-		PaymentHistory::where('payment_history_serial',$target_Psirial)
-			->update(['payment_history_serial' => "del_".$target_Psirial]);
-		PaymentHistory::where('payment_history_serial',"del_".$target_Psirial)->delete();
+
+	public function del_payment_history_rec(){
+		//log::alert("delTargetPaymentHistorySerial=".$this->delTargetPaymentHistorySerial);
+		PaymentHistory::where('payment_history_serial',$this->delTargetPaymentHistorySerial)
+			->update(['payment_history_serial' => "del_".$this->delTargetPaymentHistorySerial]);
+		PaymentHistory::where('payment_history_serial',"del_".$this->delTargetPaymentHistorySerial)->delete();
 	}
 
 	public function sort($sort_key){
@@ -54,6 +56,7 @@ class PaymentHistoryList extends Component
 
     public function render()
     {
+		//log::alert("PaymentHistoryList render");
 		if($this->sort_key<>session('sort_key_PH')){
 			$this->sort_key=session('sort_key_PH');
 		}else{

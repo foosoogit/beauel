@@ -188,7 +188,15 @@
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" id="delTargetPaymentHistorySerial_hdn">
-                    <button type="button" id="del_btn" class="btn btn-danger" wire:click="del_payment_history(document.getElementById('delTargetPaymentHistorySerial_hdn').value)">削除</button>
+                    <button type="button" id="del_wire_btn" wire:click="del_payment_history_rec('')" class="btn btn-danger"
+                                x-data
+                                @click="$wire.set(
+                                    'delTargetPaymentHistorySerial',
+                                    document.getElementById('delTargetPaymentHistorySerial_hdn').value
+                                )"
+                        >削除</button>
+
+                    {{--<button type="button" id="del_btn" class="btn btn-danger" wire:click="del_payment_history(document.getElementById('delTargetPaymentHistorySerial_hdn').value)">削除</button>--}}
                     <button type="button" class="btn btn-info" data-bs-dismiss="modal">キャンセル</button>
                 </div>
             </div>

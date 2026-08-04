@@ -3,7 +3,8 @@
         <div class="mb-2 bg-secondary text-white"><span class="border border-success bg-success text-white rounded h5">&nbsp;{{session('target_branch_name')}}&nbsp;</span>&nbsp;&nbsp;来店記録</div>
 		<div class="row pb-2">
             <div class="col-auto">
-                <button type="button" name="update_btn" id="update_btn" class="btn btn-success btn-sm modalBtn" onclick="location_href()">更新</button>
+                {{-- <button type="button" name="update_btn" id="update_btn" class="btn btn-success btn-sm modalBtn" onclick="location_href()">更新</button> --}}
+                来店回数：{{ $VisitHistoryQuery->count() }}
             </div>
             <div class="col-auto">
                 <button type="button" name="create_btn" id="create_btn" class="btn btn-primary btn-sm modalBtn" 
@@ -20,31 +21,31 @@
                 <button type="button" name="SerchBtn" id="SerchBtn" wire:click="Vsearch()" disabled>検索</button>
             </div>
         </div>
-        <table id="table_responsive container-fluid" class="table-striped table-hover">
+        <table id="table_responsive" class="table-striped table-hover container-fluid">
             <thead class="table-success">
                 <tr>
                     <th class="border px-4 py-2">来店番号(修正)
                         <div class="text-nowrap">
-                            <button type="button" wire:click="Vsort('visit_history_serial-ASC')" disabled><img src="{{ asset('storage/images/sort_A_Z.png') }}" width="15px" /></button>
-                            <button type="button" wire:click="Vsort('visit_history_serial-Desc')" disabled><img src="{{ asset('storage/images/sort_Z_A.png') }}" width="15px"/></button>
-                        </div>   
+                            <button type="button" wire:click="Vsort('visit_history_serial-ASC')" disabled><img src="{{ asset('storage/images/sort_A_Z.png') }}" alt="昇順" idth="15"></button>
+                            <button type="button" wire:click="Vsort('visit_history_serial-Desc')" disabled><img src="{{ asset('storage/images/sort_Z_A.png') }}" alt="降順" width="15"></button>
+                        </div>
                     </th>
                     <th class="border px-4 py-2">来店日(カルテ入力)
                         <div class="text-nowrap">
-                            <button type="button" wire:click="Vsort('date_visit-ASC')" disabled><img src="{{ asset('storage/images/sort_A_Z.png') }}" width="15px" /></button>
-                            <button type="button" wire:click="Vsort('date_visit-Desc')" disabled><img src="{{ asset('storage/images/sort_Z_A.png') }}" width="15px" /></button>
+                            <button type="button" wire:click="Vsort('date_visit-ASC')" disabled><img src="{{ asset('storage/images/sort_A_Z.png') }}" alt="昇順" width="15"></button>
+                            <button type="button" wire:click="Vsort('date_visit-Desc')" disabled><img src="{{ asset('storage/images/sort_Z_A.png') }}" alt="降順" width="15"></button>
                         </div>
                     </th>
                     <th class="border px-4 py-2">施術内容
                         <div class="text-nowrap">
-                            <button type="button" wire:click="Vsort('treatment_dtails-ASC')" disabled><img src="{{ asset('storage/images/sort_A_Z.png') }}" width="15px" /></button>
-                            <button type="button" wire:click="Vsort('treatment_dtails-Desc')" disabled><img src="{{ asset('storage/images/sort_Z_A.png') }}" width="15px" /></button>
+                            <button type="button" wire:click="Vsort('treatment_dtails-ASC')" disabled><img src="{{ asset('storage/images/sort_A_Z.png') }}" alt="昇順" width="15"></button>
+                            <button type="button" wire:click="Vsort('treatment_dtails-Desc')" disabled><img src="{{ asset('storage/images/sort_Z_A.png') }}" alt="降順" width="15"></button>
                         </div>
                     </th>
                     <th class="border px-4 py-2">施術者
                         <div class="text-nowrap">
-                            <button type="button" wire:click="Vsort('last_name_kana-ASC')" disabled><img src="{{ asset('storage/images/sort_A_Z.png') }}" width="15px" /></button>
-                            <button type="button" wire:click="Vsort('last_name_kana-Desc')" disabled><img src="{{ asset('storage/images/sort_Z_A.png') }}" width="15px" /></button>
+                            <button type="button" wire:click="Vsort('last_name_kana-ASC')" disabled><img src="{{ asset('storage/images/sort_A_Z.png') }}" alt="昇順" width="15"></button>
+                            <button type="button" wire:click="Vsort('last_name_kana-Desc')" disabled><img src="{{ asset('storage/images/sort_Z_A.png') }}" alt="降順" width="15"></button>
                         </div>
                     </th>
                     <th class="border px-4 py-2">削除</th>
@@ -54,7 +55,7 @@
                 @foreach ($VisitHistoryQuery as $dVisitHistory)
                     <tr>
                         <td class="border px-4 py-2">
-                            <button type="button" id="modify_btn_{{$dVisitHistory->visit_history_serial}}" class="btn btn-info modalBtn btn-sm" 
+                            <button type="button" id="modify_btn_{{ $dVisitHistory->visit_history_serial }}" class="btn btn-info modalBtn btn-sm" 
                                 data-bs-toggle="modal" 
                                 data-bs-target="#ModifyModal" 
                                 data-num="{{$dVisitHistory->VisitNum}}" 
@@ -103,25 +104,27 @@
                     <div class="modal-header">
                         <meta http-equiv="Pragma" content="no-cache">
                         <meta http-equiv="Cache-Control" content="no-cache"> 
-                        <h4 class="modal-title">来店履歴修正</h4>
+                        <h1 class="modal-title" id="ModalLabel">来店履歴修正</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-bs-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-auto">
-                                来店シリアル：<span id="visit_history_serial"></span>
+                                来店番号：<span id="visit_history_serial"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-auto">
-                                顧客氏名：<span id="name"></span>
+                                顧客氏名：<span id="name"></span>{{$User_name}}
                             </div>
                         </div>
+                        {{-- 
                         <div class="row">
                             <div class="col-auto">
-                                回数：<span id="num"></span>
+                                来店回数：<span id="num"></span>{{ $VisitHistoryQuery->count()+1 }}
                             </div>
                         </div>
+                         --}}
                         <div class="row">
                             <div class="col-auto">
                                 来店日：<input type="date" id="visit_date">
@@ -143,6 +146,16 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" id="btn1" class="btn btn-primary">保存</button>
+                        {{--}}
+                        <button type="button" id="btn1" wire:click="del_visit_history_rec('')" class="btn btn-primary"
+                                x-data
+                                @click="$wire.set(
+                                    'delTargetVisitHistorySerial',
+                                    document.getElementById("TargetVisitHistorySerial_hdn").value
+                                )"
+                        >削除</button>
+                        --}}
+
                         <button type="button" class="btn btn-info" data-bs-dismiss="modal">キャンセル</button>
                     </div>
                 </div>
@@ -162,12 +175,13 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-auto">
-                                <label>来店シリアル：<span id="visit_history_serial_d"></span></label>
+                                <label>来店番号：<span id="visit_history_serial_d"></span></label>
+                                <input type="hidden" id="TargetVisitHistorySerial_hdn">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-auto">
-                                <label>顧客氏名：<span id="name_d"></span></label>
+                                <label>顧客氏名：<span id="name_d"></span>{{$User_name}}</label>
                             </div>
                         </div>
                         <div class="row">
@@ -193,8 +207,14 @@
                         上記データを削除します。よろしいですか？
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" id="delTargetVisitHistorySerial_hdn">
-                        <button type="button" id="del_btn" wire:click="del_visit_history(document.getElementById('delTargetVisitHistorySerial_hdn').value)" class="btn btn-danger">削除</button>
+                        <input type="hidden" id="delTargetVisitHistorySerial_hdn" wire:model="delTargetVisitHistorySerial">
+                        <button type="button" id="del_wire_btn" wire:click="del_visit_history_rec('')" class="btn btn-danger"
+                                x-data
+                                @click="$wire.set(
+                                    'delTargetVisitHistorySerial',
+                                    document.getElementById('delTargetVisitHistorySerial_hdn').value
+                                )"
+                        >削除</button>
                         <button type="button" class="btn btn-info" data-bs-dismiss="modal">キャンセル</button>
                     </div>
                 </div>

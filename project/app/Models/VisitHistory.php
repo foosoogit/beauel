@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Staff;
+use Illuminate\Support\Facades\Log;
 
 class VisitHistory extends Model
 {
@@ -21,6 +22,7 @@ class VisitHistory extends Model
 	];
 
 	public function getVisitNumAttribute($value){
+		//log::alert("visit_history_serial=".$this->visit_history_serial);
 		$visit_history_serial_array=explode("-", $this->visit_history_serial);
 		$visitNum=$visit_history_serial_array[2];
 		return $visitNum;
