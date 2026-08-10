@@ -10,8 +10,11 @@
 					<p class="display-1 text-danger">店舗が選択されていません。</p>
 				@endif
                 <div class="row pb-2">
-                    <div class="col-auto">
+                    <div class="col-auto">{{-- 
                         <form method="GET" action="/customers/ShowInpContract/{{$UserSerial}}">@csrf
+                         --}}
+                        <form method="GET" action="{{ route('customers.ShowInpKeiyaku.get', ['serial_user' => $UserSerial]) }}">@csrf
+                        
                             <button class="btn btn-primary btn-sm" type="submit">新規登録</button>
                         </form>
                     </div>
