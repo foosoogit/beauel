@@ -10,14 +10,14 @@
 					<p class="display-1 text-danger">店舗が選択されていません。</p>
 				@endif
                 <div class="row pb-2">
-                    <div class="col-auto">   
+                    <div class="col-auto">
                         <form method="GET" action="/customers/ShowInpContract/{{$UserSerial}}">@csrf
                             <button class="btn btn-primary btn-sm" type="submit">新規登録</button>
                         </form>
                     </div>
                     <div class="col-auto">
                         @if($UserSerial==="all")
-                            <button type="button" class="btn btn-primary btn-sm" wire:click="searchClear() onclick="document.getElementById('kensakukey_txt').value=''">解除</button>
+                            <button type="button" class="btn btn-primary btn-sm" wire:click="searchClear()" onclick="document.getElementById('kensakukey_txt').value=''">解除</button>
                             <input type="text" name="kensakukey_txt" id="kensakukey_txt" wire:model.defer="serch_key_contract" value="{{$serchKey_contract}}" class="form-control-sm">
                             <button class="btn btn-primary btn-sm" type="submit" wire:click="search()">検索</button>
                         @else
@@ -25,38 +25,38 @@
                         @endif
                     </div>
                 </div>
-                <table id="table_responsive container-fluid" class="table-striped table-hover">
+                <table id="table_id" class="table-striped table-hover table_responsive container-fluid">
                     <thead class="table-success">
                         <tr>
                             <th class="border px-4 py-2">契約日
                                 <div class="text-nowrap">
-                                    <button type="button" wire:click="sort('keiyaku_bi-ASC')"><img src="{{ asset('images/sort_A_Z.png') }}" width="15px" /></button>
-                                    <button type="button" wire:click="sort('keiyaku_bi-Desc')"><img src="{{ asset('images/sort_Z_A.png') }}" width="15px" /></button>
-                                </div>   
+                                    <button type="button" wire:click="sort('keiyaku_bi-ASC')"><img src="{{ asset('images/sort_A_Z.png') }}" width="15"></button>
+                                    <button type="button" wire:click="sort('keiyaku_bi-Desc')"><img src="{{ asset('images/sort_Z_A.png') }}" width="15"></button>
+                                </div>
                             </th>
                             <th class="border px-4 py-2">契約番号(修正)
                                 <div class="text-nowrap">
-                                    <button type="button" wire:click="sort('serial_keiyaku-ASC')"><img src="{{ asset('images/sort_A_Z.png') }}" width="15px" /></button>
-                                    <button type="button" wire:click="sort('serial_keiyaku-Desc')"><img src="{{ asset('images/sort_Z_A.png') }}" width="15px" /></button>
+                                    <button type="button" wire:click="sort('serial_keiyaku-ASC')"><img src="{{ asset('images/sort_A_Z.png') }}" width="15"></button>
+                                    <button type="button" wire:click="sort('serial_keiyaku-Desc')"><img src="{{ asset('images/sort_Z_A.png') }}" width="15"></button>
                                 </div>
                             </th>
                             <th class="border px-4 py-2">最終来店日(支払い・来店記録入力)
                                 <div class="text-nowrap">
-                                    <button type="button" wire:click="sort('date_latest_visit-ASC')"><img src="{{ asset('images/sort_A_Z.png') }}" width="15px" /></button>
-                                    <button type="button" wire:click="sort('date_latest_visit-Desc')"><img src="{{ asset('images/sort_Z_A.png') }}" width="15px" /></button>
+                                    <button type="button" wire:click="sort('date_latest_visit-ASC')"><img src="{{ asset('images/sort_A_Z.png') }}" width="15"></button>
+                                    <button type="button" wire:click="sort('date_latest_visit-Desc')"><img src="{{ asset('images/sort_Z_A.png') }}" width="15"></button>
                                 </div>
                             </th>
                             @if($UserSerial==="all")
                                 <th class="border px-4 py-2">顧客番号（新規作成)
                                     <div class="text-nowrap">
-                                        <button type="button" wire:click="sort('contracts.serial_user-ASC')"><img src="{{ asset('images/sort_A_Z.png') }}" width="15px" /></button>
-                                        <button type="button" wire:click="sort('contracts.serial_user-Desc')"><img src="{{ asset('images/sort_Z_A.png') }}" width="15px" /></button>
+                                        <button type="button" wire:click="sort('contracts.serial_user-ASC')"><img src="{{ asset('images/sort_A_Z.png') }}" width="15"></button>
+                                        <button type="button" wire:click="sort('contracts.serial_user-Desc')"><img src="{{ asset('images/sort_Z_A.png') }}" width="15" /></button>
                                     </div>
                                 </th>
                                 <th class="border px-4 py-2">氏名
                                     <div class="text-nowrap">
-                                        <button type="button" wire:click="sort('users.name_sei_kana-ASC')"><img src="{{ asset('images/sort_A_Z.png') }}" width="15px" /></button>
-                                        <button type="button" wire:click="sort('users.serial_user-Desc')"><img src="{{ asset('images/sort_Z_A.png') }}" width="15px" /></button>
+                                        <button type="button" wire:click="sort('users.name_sei_kana-ASC')"><img src="{{ asset('images/sort_A_Z.png') }}" width="15"></button>
+                                        <button type="button" wire:click="sort('users.serial_user-Desc')"><img src="{{ asset('images/sort_Z_A.png') }}" width="15"></button>
                                     </div>
                                 </th>
                             @endif
@@ -64,14 +64,14 @@
                             <th class="border px-4 py-2">契約期間</th>
                             <th class="border px-4 py-2">契約金額
                                 <div class="text-nowrap">
-                                    <button type="button" wire:click="sort('keiyaku_kingaku-ASC')"><img src="{{ asset('images/sort_A_Z.png') }}" width="15px" /></button>
-                                    <button type="button" wire:click="sort('keiyaku_kingaku-Desc')"><img src="{{ asset('images/sort_Z_A.png') }}" width="15px" /></button>
+                                    <button type="button" wire:click="sort('keiyaku_kingaku-ASC')"><img src="{{ asset('images/sort_A_Z.png') }}" width="15"></button>
+                                    <button type="button" wire:click="sort('keiyaku_kingaku-Desc')"><img src="{{ asset('images/sort_Z_A.png') }}" width="15"></button>
                                 </div>   
                             </th>
                             <th class="border px-4 py-2">支払い方法
                                 <div class="text-nowrap">
-                                    <button type="button" wire:click="sort('how_to_pay-ASC')"><img src="{{ asset('images/sort_A_Z.png') }}" width="15px" /></button>
-                                    <button type="button" wire:click="sort('how_to_pay-Desc')"><img src="{{ asset('images/sort_Z_A.png') }}" width="15px" /></button>
+                                    <button type="button" wire:click="sort('how_to_pay-ASC')"><img src="{{ asset('images/sort_A_Z.png') }}" width="15"></button>
+                                    <button type="button" wire:click="sort('how_to_pay-Desc')"><img src="{{ asset('images/sort_Z_A.png') }}" width="15"></button>
                                 </div>
                             </th>
                             <th class="border px-4 py-2">支払い回数
@@ -121,7 +121,14 @@
                                 <td class="border px-4 py-2" {!! $dContracts->closed_color!!}>{{ $dContracts->keiyaku_kikan_start}}-{{ $dContracts->keiyaku_kikan_end}}</td>
                                 <td class="border px-4 py-2">{{ $dContracts->keiyaku_kingaku}}</td>
                                 <td class="border px-4 py-2">{{ $dContracts->how_to_pay}}</td>
-                                <td class="border px-4 py-2">{{ $dContracts->how_many_pay_genkin}}</td>
+                                <td class="border px-4 py-2">
+                                     @if ($dContracts->keiyaku_type=="subscription")
+                                     サブスクリプション
+                                     @else
+                                        {{ $dContracts->how_many_pay_genkin}}回現金、{{ $dContracts->how_many_pay_card}}回カード
+                                     @endif
+                                </td>
+                                     {{ $dContracts->how_many_pay_genkin}}{{ $dContracts->how_many_pay_card}}</td>
                                 <td class="border px-4 py-2">
                                     <form action="/customers/deleteContract/{{$dContracts->serial_keiyaku}}/{{$dContracts->serial_user}}" method="GET">@csrf
                                         <input name="delete_btn" type="submit" value="削除" onclick="return delArert('{{ $dContracts->serial_user}} {{ $dContracts->name_sei}} {{ $dContracts->name_mei}}');" >

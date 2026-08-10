@@ -401,6 +401,7 @@ class AdminController extends Controller
 	}
 	
 	function insertContract(Request $request){
+		log::info($request);	
 		$motourl = $_SERVER['HTTP_REFERER'];
 		OtherFunc::set_access_history($_SERVER['HTTP_REFERER']);
 		$kyo=date("Y-m-d H:i:s");
@@ -422,7 +423,7 @@ class AdminController extends Controller
 		if($request->contract_type=='subscription'){
 			$keiyakukinngaku=str_replace(',','',mb_convert_kana($request->inpMonthlyAmount, "n"));
 		}
-		//$how_to_pay=$request->HowPayRdio;
+		session(['contract_type' => $request->contract_type]);
 		$how_to_pay=$request->method_how_to_pay_slct;
 		if($request->contract_type=='subscription'){
 			$how_to_pay="card";
@@ -463,7 +464,6 @@ class AdminController extends Controller
 			'deleted_at'=>null,
 			'payments_num'=> $request->payments_num_slct
 		];
-		//Log::info($targetData);
 
 		if($request->ContractSerial<>""){
 			Contract::upsert($targetData,['serial_keiyaku']);
@@ -790,12 +790,14 @@ class AdminController extends Controller
     }
 
 	public function ShowMedicalRecordFromIframe(Request $request){
+		log::info($request);
 		$visit_history_serial=$request->count_btn;
 		$visit_history_serial_array=explode('-', $visit_history_serial);
 		$visit_history_num=$visit_history_serial_array[2];
 		$visit_history_num_int=(int)$visit_history_num;
 		$tg='"visitDate.'.$visit_history_num_int.'"';
 		$serial_keiyaku=str_replace("V","K",$visit_history_serial_array[0]).'-'.$visit_history_serial_array[1];
+		log::alert("serial_keiyaku=".$serial_keiyaku);
 		session(['ContractSerial' => $serial_keiyaku]);
 		$clinical_serial=str_replace( "V","K" , $visit_history_serial);
 		$VisitHistoryInfArray=VisitHistory::where('visit_history_serial','=',$visit_history_serial)->first();
@@ -831,6 +833,7 @@ class AdminController extends Controller
 	
 	public function ShowContractList($UserSerial,Request $request){
 		OtherFunc::set_access_history($_SERVER['HTTP_REFERER']);
+		log::alert("UserSerial=".$UserSerial);
 		$target_historyBack_inf_array=initConsts::TargetPageInf($_SESSION['access_history'][0]);
 		$key="";
 		$Contracts="";
@@ -849,6 +852,7 @@ class AdminController extends Controller
 				->leftjoin('users', 'contracts.serial_user', '=', 'users.serial_user')
 				->select('contracts.*', 'users.*')
 				->paginate(initConsts::DdisplayLineNumContractList());
+			log::alert("UserSerial 2=".$UserSerial);
 		}
 		return view('customers.ListContract',compact("target_historyBack_inf_array","Contracts","UserSerial","userinf","GoBackPlace"));
 	}
@@ -1837,7 +1841,7 @@ class AdminController extends Controller
 
 	function insertCustomer(Request $request){
 		$targetSerial=$request->serial_user;
-		//log::alert("targetSerial=".$targetSerial);
+		log::info($request);
 		if(session('CustomerManage')=="new"){
 			$redirectPlace='/customers/ShowInputCustomer';
 			session(['CustomerManage' => 'new']);

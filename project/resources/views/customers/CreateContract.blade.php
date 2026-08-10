@@ -1,7 +1,7 @@
 @extends('layouts.appCustomer')
 @section('content')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-<script type="text/javascript" src="{{ asset('/js/CreateContract.js?20230107') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/CreateContract.js?20230108') }}"></script>
 
 <style type="text/css">
 .auto-style1 {margin-left: 40px;}
@@ -229,57 +229,20 @@ input,textarea{border: 1px solid #aaa;}
 								</td>
 							</tr>
 						</table>
-						<p class="cyclic"><span class="auto-style2"></span>お支払い方法：</p>
-							{!!$html_how_to_pay!!}
-						<p id="select_company" {!! $select_copamny_dispnone !!}>
-							<label>カード会社</label>
-							<select name="CardCompanyNameSlct" id="CardCompanyNameSlct">
-								<option value="未選択">選択してください</option>
-								{!!$CardCompanySelect!!}
-							</select>
-						</p>
-						<p class="cyclic"><span class="auto-style2"></span>回数（月数）</p>
-							{!!$html_payments_num_slct!!}
-						{{-- 
-						<p class="cyclic">
-							<label>
-								<input name="HowPayRdio" id="HowPayRdio_paypay" type="radio" onchange="HowPayRdioManage()" value="Paypay" {!!optional($HowToPay)['paypay']!!} class="cyclic"/>Paypay
-							</label>
-						</p>
-						<p class="cyclic">
-							<label>
-								<input name="HowPayRdio" id="HowPayRdio_paypay" type="radio" onchange="HowPayRdioManage()" value="smart" {!!optional($HowToPay)['smart']!!} class="cyclic"/>スマート支払い
-							</label>
-						</p>
-						<p class="cyclic"><label><input name="HowPayRdio" id="HowPayRdio_genkin" type="radio" onchange="HowPayRdioManage()" value="現金" {!!optional($HowToPay)['cash']!!} class="cyclic"/>現金支払い</label>
-							<select name="HowManyPaySlct" id="HowManyPaySlct" class="cyclic">
-								{!!optional($HowManyPay)['CashSlct']!!}
-							</select>回
-						</p>
-						<div class="auto-style1 cyclic"><span>1回目：<input name="DateFirstPay" id="DateFirstPay" type="date" value="{{optional($targetContract)->date_first_pay_genkin}}" class="cyclic"/><input type="text" name="AmountPaidFirst" id="AmountPaidFirst" class="form-control col-2 form-control-sm my-2 cyclic" value="{{optional($targetContract)->amount_first_pay_cash}}">円</span></div> 
-						<p class="auto-style1 cyclic">2回目：<input name="DateSecondtPay" id="DateSecondtPay" type="date" value="{{optional($targetContract)->date_second_pay_genkin}}" class="cyclic"/><span>(<input type="text" name="AmountPaidSecond" id="AmountPaidSecond" class="form-control col-2 form-control-sm my-2 cyclic" value="{{optional($targetContract)->amount_second_pay_cash}}">円)</p>
-						<p>
-							<label class="cyclic"><input name="HowPayRdio" id="HowPayRdio_card" type="radio" value="Credit Card" onchange="HowPayRdioManage()" {!!optional($HowToPay)['card']!!} class="cyclic"/>クレジットカード</label><label>カード会社</label>
-							<select name="CardCompanyNameSlct" id="CardCompanyNameSlct">
-								<option value="未選択">選択してください</option>
-								{!!$CardCompanySelect!!}
-							</select>
-						</p>
-						<p class="cyclic">
-							<label>
-								<input name="HowmanyCard" id="HowmanyCard_OneTime" type="radio" value="一括" class="auto-style1 cyclic" onchange="HowPayRdioManage()" {!!optional($HowManyPay)['one']!!}/>一括支払い：支払日<input name="DatePayCardOneDay" id="DatePayCardOneDay" type="date" value="{{optional($targetContract)->date_pay_card}}" class="cyclic"/>
-							</label>
-						</p>
-						<p class="cyclic">
-							<label>
-								<input name="HowmanyCard" id="HowmanyCard_Bunkatsu" type="radio" value="分割" class="auto-style1 cyclic" onchange="HowPayRdioManage()" {!!optional($HowManyPay)['bunkatu']!!} style="width: 20px"/>分割支払
-								<select name="HowManyPayCardSlct" id="HowManyPayCardSlct" class="cyclic">
-									{!!$HowManyPay['CardSlct']!!}
-								</select>回払い
-							</label>
-						</p>
-						--}}
-						<p>メモ：<textarea cols="20" name="memo" id="memo" rows="2" class="bg-white-500 text-black rounded px-3 py-1">{{optional($targetContract)->remarks}}</textarea></p>
+						<div class="cyclic">
+							<p><span class="auto-style2"></span>お支払い方法：</p>
+								{!!$html_how_to_pay!!}
+							<p id="select_company" {!! $select_copamny_dispnone !!}>
+								<label>カード会社</label>
+								<select name="CardCompanyNameSlct" id="CardCompanyNameSlct">
+									<option value="未選択">選択してください</option>
+									{!!$CardCompanySelect!!}
+								</select>
+							</p>
+							<p ><span class="auto-style2"></span>回数（月数）</p>
+								{!!$html_payments_num_slct!!}
+						</div>
+							<p>メモ：<textarea cols="20" name="memo" id="memo" rows="2" class="bg-white-500 text-black rounded px-3 py-1">{{optional($targetContract)->remarks}}</textarea></p>
 						<p style="text-align: center">
 							@if(optional($targetContract)->cancel===null)
 								{{--<button  class="btn btn-primary w-100 my-3" type="submit" onclick="return validate();">登　録</button>--}}

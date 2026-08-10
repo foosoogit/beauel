@@ -1248,7 +1248,7 @@ class OtherFunc extends Controller
 		
 		$htm_reason_coming_cbox.='<input name="reason_coming_txt" id="reason_coming_txt" type="text" class="bg-white-500 border-solid pxtext-black rounded px-3 py-1" value="'.$sonotaReason.'" /></div>';
 		$htm_reason_coming_cbox.='<div class="row" style="py-3.5"><div class="col-auto">';
-		$htm_reason_coming_cbox.='●紹介者(氏名を入力してください。自動でポイントは付きません。)</div><div class="col-auto"><input name="syokaisya_txt" id="syokaisya_txt" type="text" class="bg-white-500 border-solid pxtext-black rounded px-3 py-1" value="'.$referee.'"/></div>';
+		$htm_reason_coming_cbox.='●紹介者(氏名を入力してください。)</div><div class="col-auto"><input name="syokaisya_txt" id="syokaisya_txt" type="text" class="bg-white-500 border-solid pxtext-black rounded px-3 py-1" value="'.$referee.'"/></div>';
 		return $htm_reason_coming_cbox;
 	}
 

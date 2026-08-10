@@ -9,10 +9,17 @@
 					{!!$msg!!}
 					<ul>
 						<li class="my-3"> 
+							@if (session('contract_type')=="cyclic")
+								<form method="GET" action="{{ route('customers.ShowInpRecordVisitPayment.get', ['SerialKeiyaku' => $SerialKeiyaku,'SerialUser'=> $SerialUser])}}">@csrf
+									<button class="btn btn-primary" type="submit">続けて入金、来店記録を作成</button>
+								</form>
+							@else
+								<form method="GET" action="{{ route('customers.ShowPaymentRegistrationIflame', ['SerialKeiyaku' => $SerialKeiyaku,'SerialUser'=> $SerialUser])}}">@csrf
+									<button class="btn btn-primary" type="submit">続けて入金、来店記録を作成</button>
+								</form>
+							@endif
 							{{--<form method="GET" action="/customers/ShowInpRecordVisitPayment/{{$SerialKeiyaku}}/{{$SerialUser}}">@csrf --}}
-							<form method="GET" action="{{ route('customers.ShowInpRecordVisitPayment.get', ['SerialKeiyaku' => $SerialKeiyaku,'SerialUser'=> $SerialUser])}}">@csrf
-								<button class="btn btn-primary" type="submit">続けて来店記録を作成</button>
-							</form>
+							
 						</li>
 						<li class="my-3">
 							<form method="GET" action="{{route('customers.ShowInpNewCustomer')}}">@csrf
