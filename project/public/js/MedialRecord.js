@@ -24,12 +24,14 @@ let host_url=document.getElementById("HTTP_HOST").value
 
 if(document.getElementById("target_file").value!=""){
 	chara.src =host_url+'/'+document.getElementById("target_file").value;
+	console.log("chara.src-1="+chara.src);
 	chara.onload = () => {
 		var bairitu=2;
 		ctx.drawImage(chara,0,0,canvas.width,canvas.height);
 	};
 }else{
 	chara.src =host_url+"/images/Image_body_w796_h496.png";
+	console.log("chara.src-2="+chara.src);
 	//chara.src ='https://'+host_url+"/images/Image_body_w796_h496.png";
 	chara.onload = () => {
 		var bairitu=2;
@@ -89,14 +91,6 @@ lineWidth.addEventListener("mousemove",function(){
 	var lineNum = document.getElementById("lineWidth").value;
 	document.getElementById("lineNum").innerHTML = lineNum;
 });
-/*
-//透明度の値を変える
-alpha.addEventListener("mousemove",function(){  
-var alphaNum = document.getElementById("alpha").value;
-//document.getElementById("alphaNum").innerHTML = alphaNum;
-//document.getElementById("alphaNum").innerHTML = 100;
-});
-*/
 //色を選択
 $('li').click(function() {
         ctx.strokeStyle = $(this).css('background-color');
@@ -111,12 +105,6 @@ $('#clear').click(function(e) {
         }else{
 	        e.preventDefault();
 	        ctx.clearRect(0, 0, canvas.width, canvas.height);
-	        /*
-	        for(let i=undo_cnt;i>-1;i--){
-	        		ctx.putImageData(undoImg_array[i],0,0);
-	        		undoImg_array.pop();
-	        }
-	        */
         }
 });
    
@@ -194,7 +182,6 @@ canvas.addEventListener("touchstart",function(e){
 	e.preventDefault();
 	var rect = e.target.getBoundingClientRect();
 	ctx.lineWidth = document.getElementById("lineWidth").value;
-	//ctx.globalAlpha = document.getElementById("alpha").value/100;
 	ctx.globalAlpha = 1;
 	undoImage = ctx.getImageData(0, 0,canvas.width,canvas.height);
 	undoImg_array.push(ctx.getImageData(0, 0,canvas.width,canvas.height));
@@ -225,11 +212,7 @@ lineWidth.addEventListener("touchmove",function(){
 	var lineNum = document.getElementById("lineWidth").value;
 	document.getElementById("lineNum").innerHTML = lineNum;
 });
-//透明度の値を変える
-/*
-alpha.addEventListener("touchmove",function(){  
-var alphaNum = document.getElementById("alpha").value;
-	//document.getElementById("alphaNum").innerHTML = alphaNum;
-	//document.getElementById("alphaNum").innerHTML = 100;
-});
-*/
+
+chara.onerror = () => {
+    console.log("画像読み込み失敗:", chara.src);
+};

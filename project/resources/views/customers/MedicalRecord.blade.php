@@ -10,8 +10,6 @@
 	<link rel="icon" type="image/png" href="{{asset('/images/icon.png')}}">
 </head>
 <body>
-	{{--<img src="{{asset('/css/Image_body_w796_h496.png')}}">
-	<img src="{{asset('/images/Image_body_w796_h496.png')}}">--}}
 	<div id="aaa">
 		<div class="container text-center w-75 ml-2">
 			<div class="row text-center">
@@ -31,7 +29,10 @@
 			</div>
 			<div class="row">
 				<div id="bbb">
-					<canvas id="canvas" style="width:800px;height:500px;margin: 1em 1em 1em 5em;">残念ながらHTML5に対応していません</canvas>
+				<canvas id="canvas" width="800" height="500"
+        			style="width:800px;height:500px;margin:1em 1em 1em 5em;">
+				</canvas>
+					{{-- <canvas id="canvas" style="width:800px;height:500px;margin: 1em 1em 1em 5em;">残念ながらHTML5に対応していません</canvas> --}}
 				</div>
 			</div>
 			<div class="row text-left">
