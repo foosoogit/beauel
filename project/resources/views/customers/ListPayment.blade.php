@@ -40,7 +40,14 @@
 		<p><livewire:payment-history-list/></p>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script src="{{asset('/js/PaymentRegistration.js')}}?date=20230620"></script>
+		<script src="{{asset('/js/PaymentRegistration.js')}}?date=20230704"></script>
+		
+		<script>
+    window.treatmentSelectUrl = "{{ route('make_htm_get_payment_method_slct_ajax') }}";
+    // または正しい名前空間付き
+    // window.treatmentSelectUrl = "{{ route('customers.make_htm_get_treatment_slct_ajax') }}";
+</script>
+ 
 		@livewireScripts
 	</body>
 </html>

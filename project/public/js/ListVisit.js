@@ -1,11 +1,18 @@
 ﻿let tr_content_Select;
 function gettreatmentslct(target){
 	  $.ajax({
-			//url: '{{route("customers.make_htm_get_treatment_slct_ajax")}}',
+			//url: "{{route('make_htm_get_payment_method_slct_ajax')}}",
       //url: '{{route("customers.make_htm_get_treatment_slct")}}',
-      url: 'make_htm_get_treatment_slct_ajax',
+      //url: 'make_htm_get_treatment_slct_ajax',
+      //url: window.treatmentSelectUrl,
       //url: 'make_htm_get_treatment_slct',make_htm_get_treatment_slct
-      //url: 'make_htm_get_treatment_slct',
+      //url: 'customers/make_htm_get_payment_method_slct_ajax',
+      //url: makePaymentMethodUrl,
+      //url: '/customers/make_htm_get_payment_method_slct_ajax',
+      //url: PAYMENT_METHOD_URL,
+       //url: window.ROUTES.treatment, // ←ここ
+       url: '/customers/make_htm_get_treatment_slct_ajax',
+  type: 'POST',
 			type: 'post', // getかpostを指定(デフォルトは前者)
 			dataType: 'text', // 「json」を指定するとresponseがJSONとしてパースされたオブジェクトになる
 			scriptCharset: 'utf-8',
