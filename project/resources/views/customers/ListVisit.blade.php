@@ -8,6 +8,8 @@
 		<link rel="icon" type="image/png" href="{{asset('/images/icon.png')}}">
 		<link rel="stylesheet" type="text/css" href="{{asset('css/table_list.css')}}">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+		<link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet" />
+
 		@livewireStyles
         <!-- Scripts -->
     </head>
@@ -15,7 +17,9 @@
 		<p><livewire:visit-history-list /></p>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script src="{{asset('/js/ListVisit.js')}}?date=20230804"></script>
+		<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+		<script src="{{asset('/js/ListVisit.js')}}?date=20230830"></script>
+		<script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 		@livewireScripts
 	</body>
 </html>

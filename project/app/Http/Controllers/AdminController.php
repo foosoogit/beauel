@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\File;
 //use App\Consts\get_imagick_info;
 
 use Intervention\Image\Facades\Image;
-if(!isset($_SESSION)){session_start();}
+//if(!isset($_SESSION)){session_start();}
 
 class AdminController extends Controller
 {
@@ -197,83 +197,6 @@ class AdminController extends Controller
 			$HowToPayCheckedArray[$i][1]="";
 		}
 		$i=0;
-
-		foreach($targetPaymentHistoryArray as $targetPaymentHistory){
-			/*
-			$PaymentMethod=initConsts::PaymentMethod();
-			$PaymentMethodArray=explode(",", $PaymentMethod);
-			foreach($PaymentMethodArray as $value){
-				$st="";
-				if($targetPaymentHistory->how_to_pay==$value[0]){$st="selected";}
-				$slct_html='<option value="'.$value[0].' '.$st.'">'.$value[1].'</option>';
-			}
-			foreach(){
-
-			}
-			$HowToPay_select_array[]='<select name="example"><option>選択肢のサンプル1</option><option>選択肢のサンプル2</option><option>選択肢のサンプル3</option></select>'
-		
-			<label style="{!!$set_gray_pay_array[0]!!}"><input name="HowToPay[0]" type="radio" value="card" onclick="radioDeselection(this, 1)" {!!optional($HowToPayCheckedArray[0])[0]!!}  {{$payment_disabeled[0]}}/>カード</label>
-							<br><label style="{!!$set_gray_pay_array[0]!!}"><input name="HowToPay[0]" type="radio" value="paypay" onclick="radioDeselection(this, 2)" {!!optional($HowToPayCheckedArray[0])[1]!!}  {{$payment_disabeled[0]}}/>PayPay</label>
-							<br><label style="{!!$set_gray_pay_array[0]!!}"><input name="HowToPay[0]" type="radio" value="cash" onclick="radioDeselection(this, 3)" {!!optional($HowToPayCheckedArray[0])[2]!!} {{$payment_disabeled[0]}}/>現金</label>
-							<br><label style="{!!$set_gray_pay_array[0]!!}"><input name="HowToPay[0]" type="radio" value="default" onclick="radioDeselection(this, 4)" {!!optional($HowToPayCheckedArray[0])[3]!!} {{$payment_disabeled[0]}}/>支払い不履行</label>
-							<br><label style="{!!$set_gray_pay_array[0]!!}"><input name="HowToPay[0]" type="radio" value="smart" onclick="radioDeselection(this, 5)" {!!optional($HowToPayCheckedArray[0])[4]!!}  {{$payment_disabeled[0]}}/>スマート支払い</label>
-			
-			
-			
-			*/
-
-			/*
-			$HowToPayCheckedCard="";$HowToPayCheckedCash="";$HowToPayCheckedDefault="";
-			if($targetPaymentHistory->how_to_pay=="card"){
-				$HowToPayCheckedCard="checked";
-				$HowToPayCheckedPaypay="";
-				$HowToPayCheckedCash="";
-				$HowToPayCheckedDefault="";
-				$HowToPayCheckedSmart="";
-			}else if($targetPaymentHistory->how_to_pay=="paypay"){
-				$HowToPayCheckedCard="";
-				$HowToPayCheckedPaypay="checked";
-				$HowToPayCheckedCash="";
-				$HowToPayCheckedDefault="";
-				$HowToPayCheckedSmart="";
-			}else if($targetPaymentHistory->how_to_pay=="cash"){
-				$HowToPayCheckedCard="";
-				$HowToPayCheckedPaypay="";
-				$HowToPayCheckedCash="checked";
-				$HowToPayCheckedDefault="";
-				$HowToPayCheckedSmart="";
-			}else if($targetPaymentHistory->how_to_pay=="default"){
-				$HowToPayCheckedCard="";
-				$HowToPayCheckedPaypay="";
-				$HowToPayCheckedCash="";
-				$HowToPayCheckedDefault="checked";
-				$HowToPayCheckedSmart="";
-			}else if($targetPaymentHistory->how_to_pay=="smart"){
-				$HowToPayCheckedCard="";
-				$HowToPayCheckedPaypay="";
-				$HowToPayCheckedCash="";
-				$HowToPayCheckedDefault="";
-				$HowToPayCheckedSmart="checked";
-			}
-			Log::alert("UserSerial=".$UserSerial);
-			Log::alert("i=".$i);
-			Log::alert("how_to_pay".$targetPaymentHistory->how_to_pay);
-
-			$HowToPayCheckedArray[$i][0]=$HowToPayCheckedCard;
-			$HowToPayCheckedArray[$i][1]=$HowToPayCheckedPaypay;
-			$HowToPayCheckedArray[$i][2]=$HowToPayCheckedCash;
-			$HowToPayCheckedArray[$i][3]=$HowToPayCheckedDefault;
-			$HowToPayCheckedArray[$i][4]=$HowToPayCheckedSmart;
-
-			$PaymentDateArray[]=$targetPaymentHistory->date_payment;
-			$PaymentAmountArray[]=$targetPaymentHistory->amount_payment;
-			
-			$set_background_gray_pay_array[$i]='background-color:#e0ffff';
-			$set_gray_pay_array[$i]='background-color:#e0ffff';
-			$i++;
-			*/
-		}
-		
 
 		foreach($targetContractDetails as $targetContractDetail){
 			$KeiyakuNaiyouArray[]=$targetContractDetail->keiyaku_naiyo;
@@ -692,7 +615,7 @@ class AdminController extends Controller
 	}
 
 	public function ShowSelectBranch(){
-		log::alert("ipadd=".$_SERVER['REMOTE_ADDR']);
+		//log::alert("ipadd=".$_SERVER['REMOTE_ADDR']);
 		//OtherFunc::set_access_history($_SERVER['HTTP_REFERER']);
 		$select_branch_btn=OtherFunc::make_select_branch_btn();
 		return view('admin.select_branch',compact("select_branch_btn"));
@@ -833,7 +756,7 @@ class AdminController extends Controller
 	
 	public function ShowContractList($UserSerial,Request $request){
 		OtherFunc::set_access_history($_SERVER['HTTP_REFERER']);
-		log::alert("UserSerial=".$UserSerial);
+		//log::alert("UserSerial=".$UserSerial);
 		$target_historyBack_inf_array=initConsts::TargetPageInf($_SESSION['access_history'][0]);
 		$key="";
 		$Contracts="";
@@ -852,7 +775,7 @@ class AdminController extends Controller
 				->leftjoin('users', 'contracts.serial_user', '=', 'users.serial_user')
 				->select('contracts.*', 'users.*')
 				->paginate(initConsts::DdisplayLineNumContractList());
-			log::alert("UserSerial 2=".$UserSerial);
+			//log::alert("UserSerial 2=".$UserSerial);
 		}
 		return view('customers.ListContract',compact("target_historyBack_inf_array","Contracts","UserSerial","userinf","GoBackPlace"));
 	}
@@ -1435,19 +1358,32 @@ class AdminController extends Controller
 		$VisitHistorySerial=session('ContractSerial')."-01";
 		$VisitHistorySerial=str_replace('K','V',$VisitHistorySerial);
 		$date_latest_visit="";
+		$selected = $request->TreatmentDetailsSelect ?? [];
+		//log::info($selected);
 		if(isset($request->visitDate)){
 			$i=0;
 			foreach($request->visitDate as $visitDateValue){
 				if($visitDateValue<>""){$date_latest_visit=$visitDateValue;}
 				if($visitDateValue==""){break;}
 				$targetlData=array();
+				if (is_array($request->TreatmentDetailsSelect[$i])) {
+					//log::info($selected[$i]);
+					$TreatmentDetails=implode(',', $request->TreatmentDetailsSelect[$i]);
+					//log::info($request->TreatmentDetailsSelect[$i]);
+					//log::alert("配列です");
+				}else{
+					$TreatmentDetails=$request->TreatmentDetailsSelect[$i];
+					//log::alert("配列ではありません");
+				}
+				//log::alert("TreatmentDetailsSelect=" . $TreatmentDetails);
 				$targetlData=[
 					'serial_keiyaku'=>session('ContractSerial'),
 					'serial_user'=>session('UserSerial'),
 					'visit_history_serial'=>$VisitHistorySerial,
 					'serial_staff'=>Auth::user()->serial_staff,
 					'date_visit'=>$visitDateValue,
-					'treatment_dtails'=>$request->TreatmentDetailsSelect[$i],
+					//'treatment_dtails'=>$request->TreatmentDetailsSelect[$i],
+					'treatment_dtails'=>$TreatmentDetails,
 					'branch'=>session('target_branch_serial'),
 					//'point'=>$request->point[$i],
 					'deleted_at'=>null

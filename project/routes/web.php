@@ -16,7 +16,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Log;
 //use Livewire\Controllers\HttpController;
 
-if(!isset($_SESSION)){session_start();}
+//if(!isset($_SESSION)){session_start();}
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -305,6 +305,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/customers/save_payment_history_ajax', [OtherFunc::class,'save_payment_history_ajax'])->name('save_payment_history_ajax');
     Route::post('/customers/make_htm_get_payment_method_slct_ajax', [OtherFunc::class,'make_htm_get_payment_method_slct_ajax'])->name('make_htm_get_payment_method_slct_ajax');
     
+    Route::post('/customers/make_htm_get_treatment_slct', [OtherFunc::class,'make_htm_get_treatment_slct'])->name('customers.make_htm_get_treatment_slct');
+
     Route::post('/customers/make_htm_get_treatment_slct_ajax', [OtherFunc::class,'make_htm_get_treatment_slct_ajax'])->name('customers.make_htm_get_treatment_slct_ajax');
     Route::post('make_htm_get_treatment_slct_ajax', [OtherFunc::class,'make_htm_get_treatment_slct_ajax'])->name('make_htm_get_treatment_slct_ajax');
     Route::get('/send_attendance_card/{TargetStaffSerial}',[OtherFunc::class,'send_attendance_card'],function($TargetStaffSerial){});

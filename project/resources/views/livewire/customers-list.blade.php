@@ -138,7 +138,7 @@
                                      @if(empty($user->reservation))
                                         <button type="button" id="yoyaku_btn_{{$user->serial_user}}" class="btn btn-info modalBtn btn-sm" data-toggle="modal" data-target="#YoyakuModal" data-watasu="" data-serial="{{$user->serial_user}}" data-name="{{ $user->name_sei}}&nbsp;{{ $user->name_mei}}">予約日</button>
                                     @else
-                                        <button type="button" id="yoyaku_btn_{{$user->serial_user}}" class="btn btn-info modalBtn btn-sm" data-toggle="modal" data-target="#YoyakuModal" data-watasu="{{$user->reservation}}" data-serial="{{$user->serial_user}}" data-name="{{ $user->name_sei}}&nbsp;{{ $user->name_mei}}">{{$user->reservation}}</button>
+                                        <button type="button" id="yoyaku_btn_{{$user->serial_user}}" class="btn btn-info modalBtn btn-sm" data-toggle="modal" data-target="#YoyakuModal" data-watasu="{{$user->reservation}}" data-serial="{{$user->serial_user}}" data-name="{{ $user->name_sei}}&nbsp;{{ $user->name_mei}}">{{ \Carbon\Carbon::parse($user->reservation)->format('Y-m-d H:i') }}</button>
                                     @endif
                                 </td>
                                 <td class="border px-4 py-2">

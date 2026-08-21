@@ -97,7 +97,7 @@
                                 <td class="border px-4 py-2">
                                     @if ($dContracts->keiyaku_type=="subscription")
                                         <form action="/customers/ShowPaymentRegistrationIflame/{{$dContracts->serial_keiyaku}}/{{$dContracts->serial_user}}" method="GET">@csrf
-                                            @if($dContracts->date_latest_visit==Null)
+                                            @if($dContracts->LatestVisitDate==Null)
                                                 <input name="Record_Btn" type="submit" value="なし">
                                             @else
                                                 <input name="Record_Btn" type="submit" value="{{$dContracts->LatestVisitDate}}">
@@ -105,10 +105,10 @@
                                         </form>
                                     @else
                                         <form action="/customers/ShowInpRecordVisitPayment/{{$dContracts->serial_keiyaku}}/{{$dContracts->serial_user}}" method="GET">@csrf
-                                            @if($dContracts->date_latest_visit==Null)
+                                            @if($dContracts->LatestVisitDate==Null)
                                                 <input name="Record_Btn" type="submit" value="なし">
                                             @else
-                                                <input name="Record_Btn" type="submit" value="{{$dContracts->date_latest_visit}}">
+                                                <input name="Record_Btn" type="submit" value="{{$dContracts->LatestVisitDate}}">
                                             @endif
                                         </form>
                                     @endif
@@ -121,14 +121,20 @@
                                     </td>
                                     <td class="border px-4 py-2">{{$dContracts->name_sei}} &nbsp; {{$dContracts->name_mei}}</td>
                                 @endif
-                                <td class="border px-4 py-2" {!! $dContracts->closed_color!!}>{{ $dContracts->keiyaku_kikan_start}}-{{ $dContracts->keiyaku_kikan_end}}</td>
+                                 @if ($dContracts->keiyaku_type=="subscription")
+                                     <td class="border px-4 py-2" {!! $dContracts->closed_color!!}>サブスクリプション</td>
+                                     @else
+                                     <td class="border px-4 py-2" {!! $dContracts->closed_color!!}>{{ $dContracts->keiyaku_kikan_start}}-{{ $dContracts->keiyaku_kikan_end}}</td>
+                                        {{ $dContracts->how_many_pay_genkin}}回現金、{{ $dContracts->how_many_pay_card}}回カード
+                                     @endif
+                                
                                 <td class="border px-4 py-2">{{ $dContracts->keiyaku_kingaku}}</td>
                                 <td class="border px-4 py-2">{{ $dContracts->how_to_pay}}</td>
                                 <td class="border px-4 py-2">
                                      @if ($dContracts->keiyaku_type=="subscription")
-                                     サブスクリプション
+                                     --
                                      @else
-                                        {{ $dContracts->how_many_pay_genkin}}回現金、{{ $dContracts->how_many_pay_card}}回カード
+                                            {{ $dContracts->payments_num}}回
                                      @endif
                                 </td>
                                      {{ $dContracts->how_many_pay_genkin}}{{ $dContracts->how_many_pay_card}}</td>

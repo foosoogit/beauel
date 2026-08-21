@@ -902,7 +902,7 @@ class OtherFunc extends Controller
 	}
 
 	public function save_visit_data_ajax(Request $request){
-		log::alert("save_visit_data_ajax");
+		//Log::alert("save_visit_data_ajax");
 		if(session('targetKeiyakuSerial')==0){
 			session(['targetKeiyakuSerial' => 'K_'.session('target_user_serial')."-0000"]);
 			$seriar_user=session('target_user_serial');
@@ -910,10 +910,11 @@ class OtherFunc extends Controller
 			$keiyaku_array=explode("-", session('targetKeiyakuSerial'));
 			$seriar_user=str_replace('K_', '', $keiyaku_array[0]);
 		}
+		$treatment_value=implode(',', $request->treatment_value_array);
 		$visits = [
 			['visit_history_serial' =>$request->Tvisit_history_serial,
 			'date_visit' => $request->Tdate,
-			'treatment_dtails' => $request->Ttr_content,
+			'treatment_dtails' => $treatment_value,
 			'serial_keiyaku'=>session('targetKeiyakuSerial'),
 			'branch'=>session('target_branch_serial'),
 			'serial_user'=>$seriar_user
@@ -985,7 +986,7 @@ class OtherFunc extends Controller
 	public static function make_htm_get_treatment_slct_ajax(Request $request){
 		$TargetTreatmentName=$request->target;
 		//log::alert("target=".$request->target);
-		$htm_TreatmentsName_slct='<select name="tr_content_slct" id="tr_content_slct">';
+		$htm_TreatmentsName_slct='<select name="tr_content_slct" id="tr_content_slct" class="select2 html" style="width: 250px" multiple>';
 		$htm_TreatmentsName_slct.=OtherFunc::make_htm_get_treatment_slct($request->target);
 		$htm_TreatmentsName_slct.='</select>';
 		//log::alert("htm_TreatmentsName_slct=".$htm_TreatmentsName_slct);
@@ -995,46 +996,47 @@ class OtherFunc extends Controller
 	public static function make_htm_get_treatment_slct($TargetTreatmentName){
 		//log::alert("TargetTreatmentName=".$TargetTreatmentName);
 		$kana = array(
-			"ア行" => "[ア-オあ-お]",
-			"カ行" => "[カ-コガ-ゴか-こが-ご]",
-			"サ行" => "[サ-ソザ-ゾさ-そざ-ぞ]",
-			"タ行" => "[タ-トダ-ドた-とだ-ど]",
-			"ナ行" => "[ナ-ノな-の]",
-			"ハ行" => "[ハ-ホバ-ボパ-ポは-ほば-ぼぱ-ぽ]",
-			"マ行" => "[マ-モま-も]",
-			"ヤ行" => "[ヤ-ヨや-よ]",
-			"ラ行" => "[ラ-ロら-ろ]",
-			"ワ行" => "[ワ-ンわ-ん]",
-			"その他" => ".*"
+			"ア行" => ['ア', 'イ', 'ウ', 'エ', 'オ', 'あ', 'い', 'う', 'え', 'お'],
+			"カ行" => ['カ', 'キ', 'ク', 'ケ', 'コ', 'か', 'き', 'く', 'け', 'こ', 'ガ', 'ギ', 'グ', 'ゲ', 'ゴ', 'が', 'ぎ', 'ぐ', 'げ', 'ご'],
+			"サ行" => ['サ', 'シ', 'ス', 'セ', 'ソ', 'さ', 'し', 'す', 'せ', 'そ', 'ザ', 'ジ', 'ズ', 'ゼ', 'ゾ', 'ざ', 'じ', 'ず', 'ぜ', 'ぞ'],
+			"タ行" => ['タ', 'チ', 'ツ', 'テ', 'ト', 'た', 'ち', 'つ', 'て', 'と', 'ダ', 'ヂ', 'ヅ', 'デ', 'ド', 'だ', 'ぢ', 'づ', 'で', 'ど'],
+			"ナ行" => ['ナ', 'ニ', 'ヌ', 'ネ', 'ノ', 'な', 'に', 'ぬ', 'ね', 'の'],
+			"ハ行" => ['ハ', 'ヒ', 'フ', 'ヘ', 'ホ', 'は', 'ひ', 'ふ', 'へ', 'ほ', 'バ', 'ビ', 'ブ', 'ベ', 'ボ', 'ば', 'び', 'ぶ', 'べ', 'ぼ', 'パ', 'ピ', 'プ', 'ペ', 'ポ', 'ぱ', 'ぴ', 'ぷ', 'ぺ', 'ぽ'],
+			"マ行" => ['マ', 'ミ', 'ム', 'メ', 'モ', 'ま', 'み', 'む', 'め', 'も'],
+			"ヤ行" => ['ヤ', 'ユ', 'ヨ', 'や', 'ゆ', 'よ'],
+			"ラ行" => ['ラ', 'リ', 'ル', 'レ', 'ロ', 'ら', 'り', 'る', 'れ', 'ろ'],
+			"ワ行" => ['ワ', 'ヰ', 'ヱ', 'ヲ', 'ン', 'わ', 'ゐ', 'ゑ', 'を', 'ん'],
+			"その他" => []
 		);
-		//$treatmentInfArray=TreatmentContent::where('branch',session('target_branch_serial'))->orderBy('name_treatment_contents_kana')->get();
-		$treatmentInfArray=TreatmentContent::orderBy('name_treatment_contents_kana')->get();
-		$htm_TreatmentsName_slct='<option value=0>-- 選択してください --</option>';
-		$tgtGrp="";
-		foreach($treatmentInfArray as $value){
-			$sct="";
-			$match = false;$flg=false;$cnt=0;$k=0;
-			foreach ($kana as $index => $pattern) {
-				if (preg_match("/^" . $pattern . "/u", $value->name_treatment_contents_kana)) {
-					++$cnt;
-					if($tgtGrp<>$index){
-						$htm_TreatmentsName_slct.='<optgroup label="'.$index.'">';
-						$tgtGrp=$index;
-						if($cnt>1){$htm_TreatmentsName_slct.='</optgroup>';}
-					};
-					if(empty($TargetTreatmentName)){
-						$sct='';
-					}else{
-						if($TargetTreatmentName==$value->name_treatment_contents){
-							$sct='Selected';
-						}
-					}
-					$htm_TreatmentsName_slct.='<option value="'.$value->name_treatment_contents.'" '.$sct.'>'.$value->name_treatment_contents.'</option>';
-					break;
-				}
-				++$k;
+		$allTreatments = TreatmentContent::orderBy('name_treatment_contents_kana')->get();
+		$htm_TreatmentsName_slct = '<option value="0">-- 選択してください --</option>';
+		foreach ($kana as $index => $pattern) {
+			if ($index === "その他") {
+				// 全50音のいずれにも該当しなかった残りのデータを抽出
+				$treatmentInfArray = $allTreatments;
+			} else {
+				// 先頭1文字が配列に含まれるものを抽出
+				$treatmentInfArray = $allTreatments->reject(function ($item) use ($pattern) {
+					$firstChar = mb_substr($item->name_treatment_contents_kana, 0, 1, 'UTF-8');
+					return !in_array($firstChar, $pattern, true);
+				});
+				// 抽出した分を $allTreatments から除外（「その他」用に保持するため）
+				$allTreatments = $allTreatments->diff($treatmentInfArray);
 			}
-		}		
+
+			if ($treatmentInfArray->isNotEmpty()) {
+				//log::alert("生成中: " . $index );
+				$htm_TreatmentsName_slct .= '<optgroup label="' . $index . '">';
+				foreach ($treatmentInfArray as $value) {
+					$sct = '';
+					if (!empty($TargetTreatmentName) && str_contains($TargetTreatmentName, $value->name_treatment_contents)) {
+						$sct = 'selected';
+					}
+					$htm_TreatmentsName_slct .= '<option value="' . htmlspecialchars($value->name_treatment_contents, ENT_QUOTES) . '" ' . $sct . '>' . htmlspecialchars($value->name_treatment_contents, ENT_QUOTES) . '</option>';
+				}
+				$htm_TreatmentsName_slct .= '</optgroup>';
+			}
+		}
 		return $htm_TreatmentsName_slct;
 	}
 

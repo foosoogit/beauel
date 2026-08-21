@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Livewire;
-
+//namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\User;
 use App\Models\Contract;
@@ -11,7 +11,7 @@ use App\Consts\initConsts;
 use Illuminate\Http\Request;
 use App\Http\Controllers\OtherFunc;
 use Illuminate\Support\Facades\Log;
-if(!isset($_SESSION)){session_start();}
+//if(!isset($_SESSION)){session_start();}
 
 class CustomersList extends Component
 {

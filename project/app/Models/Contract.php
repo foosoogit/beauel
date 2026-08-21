@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\User;
 use App\Models\Staff;
 use App\Models\VisitHistory;
+use Illuminate\Support\Facades\Log;
 
 class Contract extends Model
 {
@@ -36,8 +37,9 @@ class Contract extends Model
 	];
 
     public function getLatestVisitDateAttribute($value){
+		//log::alert("serial_keiyaku=".$this->serial_keiyaku);
 		$max_date=VisitHistory::where('serial_keiyaku','=',$this->serial_keiyaku)->max('date_visit');
-		//Log::info($max_date);
+		//Log::alert($max_date);
 		return $max_date;
 	}
 

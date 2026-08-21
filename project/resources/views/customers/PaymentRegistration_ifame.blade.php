@@ -1,6 +1,6 @@
 @extends('layouts.appCustomer')
 @section('content')
-<script type="text/javascript" src="{{ asset('/js/PaymentRegistration.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/PaymentRegistration.js?20230129') }}"></script>
 <script type="text/javascript" src="{{ asset('/js/MediaRecord.js?20230129') }}"></script>
 <link rel="stylesheet" type="text/css" href="{{asset('css/iflame.css')}}">
 <style type="text/css">

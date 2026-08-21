@@ -1,7 +1,7 @@
 @extends('layouts.appCustomer')
 @section('content')
 <script type="text/javascript" src="{{ asset('/js/PaymentRegistration.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/js/MediaRecord.js?20230129') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/MediaRecord.js?2023013029') }}"></script>
 <style type="text/css">
 input{border: 1px solid #aaa;}
 table td {border: 1px solid #aaa;}
@@ -13,16 +13,6 @@ table td {border: 1px solid #aaa;}
 				<div class="row">
                     @include('layouts.header')
                 </div>
-				{{-- 
-				<div class="container gap-3">
-					<div class="row justify-content-left">
-						<a href="{{ route('admin.top') }}" class="btn btn-primary btn-sm">メニュー</a>
-						<a href="{{$GoBackToPlace}}" class="btn btn-primary btn-sm ml-xl-2">戻る</a>
-						<a href="/customers/ShowSyuseiContract/{{$targetContract->serial_keiyaku}}/{{$targetContract->serial_user}}" class="btn btn-primary btn-sm ml-xl-2">契約書</a>
-					</div>
-				</div>
-				 --}}
-				{{--<div class="card-header">顧客</div>--}}
 				<table cellpadding="5">
 					<tr>
 						<td rowspan="2"><a href="/customers/ShowSyuseiContract/{{$targetContract->serial_keiyaku}}/{{$targetContract->serial_user}}" class="btn btn-primary btn-sm ml-xl-2">契約書</a></td>
@@ -43,15 +33,6 @@ table td {border: 1px solid #aaa;}
 					</tr>
 				</table>
 				<p style="line-height:2rem"></p>
-				{{-- 
-				<p>氏名：{{ optional($targetUser)->name_sei }}&nbsp;{{ optional($targetUser)->name_mei }}</p>
-				<p>契約日: {{$targetContract->keiyaku_bi}}</p>
-				<p>契約内容: {{$KeiyakuNaiyou}}</p>
-				<p>契約期間: {{$targetContract->keiyaku_kikan_start}}～{{$targetContract->keiyaku_kikan_end}}</p>
-				<p>契約金額: {{$targetContract->keiyaku_kingaku}}</p>
-				<p>契約番号: {{$targetContract->serial_keiyaku}}</p>
-				<p><a href="/customers/ShowSyuseiContract/{{$targetContract->serial_keiyaku}}/{{$targetContract->serial_user}}" class="btn btn-primary btn-sm ml-xl-2">契約書</a></p>
-				 --}}
 				<form action="{{ route('customers.recordVisitPaymentHistory') }}" method="POST">@csrf
 					
 					{!! $html_payment_record_table !!}
@@ -106,28 +87,28 @@ table td {border: 1px solid #aaa;}
 					</tr>
 					<tr>
 						<td {!!$set_gray_array[0]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px; background-color:{{$only_treatment_color_array[0]}};">{!!$TreatmentDetailsSelectArray[0]!!}</select><br>
+						<select name="TreatmentDetailsSelect[0][]" style="width:200px; background-color:{{$only_treatment_color_array[0]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[0]!!}</select><br>
 						</td>
 						<td {!!$set_gray_array[1]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[1]}};">{!!$TreatmentDetailsSelectArray[1]!!}</select>
+						<select name="TreatmentDetailsSelect[1][]" style="width:200px;background-color:{{$only_treatment_color_array[1]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[1]!!}</select>
 						</td>
 						<td {!!$set_gray_array[2]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[2]}};">{!!$TreatmentDetailsSelectArray[2]!!}</select>
+						<select name="TreatmentDetailsSelect[2][]" style="width:200px;background-color:{{$only_treatment_color_array[2]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[2]!!}</select>
 						</td>
 						<td {!!$set_gray_array[3]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[3]}};">{!!$TreatmentDetailsSelectArray[3]!!}</select>
+						<select name="TreatmentDetailsSelect[3][]" style="width:200px;background-color:{{$only_treatment_color_array[3]}};"class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[3]!!}</select>
 						</td>
 						<td {!!$set_gray_array[4]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[4]}};">{!!$TreatmentDetailsSelectArray[4]!!}</select>
+						<select name="TreatmentDetailsSelect[4][]" style="width:200px;background-color:{{$only_treatment_color_array[4]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[4]!!}</select>
 						</td>
 						<td {!!$set_gray_array[5]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[5]}};">{!!$TreatmentDetailsSelectArray[5]!!}</select>
+						<select name="TreatmentDetailsSelect[5][]" style="width:200px;background-color:{{$only_treatment_color_array[5]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[5]!!}</select>
 						</td>
 						<td {!!$set_gray_array[6]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[6]}};">{!!$TreatmentDetailsSelectArray[6]!!}</select>
+						<select name="TreatmentDetailsSelect[6][]" style="width:200px;background-color:{{$only_treatment_color_array[6]}};"class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[6]!!}</select>
 						</td>
 						<td {!!$set_gray_array[7]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[7]}};">{!!$TreatmentDetailsSelectArray[7]!!}</select>
+						<select name="TreatmentDetailsSelect[7][]" style="width:200px;background-color:{{$only_treatment_color_array[7]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[7]!!}</select>
 						</td>
 					</tr>
 					<tr>
@@ -179,28 +160,28 @@ table td {border: 1px solid #aaa;}
 					</tr>
 					<tr>
 						<td {!!$set_gray_array[8]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[8]}};">{!!$TreatmentDetailsSelectArray[8]!!}</select>
+						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[8]}};"class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[8]!!}</select>
 						</td>
 						<td {!!$set_gray_array[9]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[9]}};">{!!$TreatmentDetailsSelectArray[9]!!}</select>
+						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[9]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[9]!!}</select>
 						</td>
 						<td {!!$set_gray_array[10]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[10]}};">{!!$TreatmentDetailsSelectArray[10]!!}</select>
+						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[10]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[10]!!}</select>
 						</td>
 						<td {!!$set_gray_array[11]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[11]}};">{!!$TreatmentDetailsSelectArray[11]!!}</select>
+						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[11]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[11]!!}</select>
 						</td>
 						<td {!!$set_gray_array[12]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[12]}};">{!!$TreatmentDetailsSelectArray[12]!!}</select>
+						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[12]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[12]!!}</select>
 						</td>
 						<td {!!$set_gray_array[13]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[13]}};">{!!$TreatmentDetailsSelectArray[13]!!}</select>
+						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[13]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[13]!!}</select>
 						</td>
 						<td {!!$set_gray_array[14]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[14]}};">{!!$TreatmentDetailsSelectArray[14]!!}</select>
+						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[14]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[14]!!}</select>
 						</td>
 						<td {!!$set_gray_array[15]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[15]}};">{!!$TreatmentDetailsSelectArray[15]!!}</select>
+						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[15]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[15]!!}</select>
 						</td>
 					</tr>
 					<tr>
@@ -236,28 +217,28 @@ table td {border: 1px solid #aaa;}
 					</tr>
 					<tr>
 						<td {!!$set_gray_array[16]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[16]}};">{!!$TreatmentDetailsSelectArray[16]!!}</select>
+						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[16]}};"class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[16]!!}</select>
 						</td>
 						<td {!!$set_gray_array[17]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[17]}};">{!!$TreatmentDetailsSelectArray[17]!!}</select>
+						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[17]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[17]!!}</select>
 						</td>
 						<td {!!$set_gray_array[18]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[18]}};">{!!$TreatmentDetailsSelectArray[18]!!}</select>
+						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[18]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[18]!!}</select>
 						</td>
 						<td {!!$set_gray_array[19]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[19]}};">{!!$TreatmentDetailsSelectArray[19]!!}</select>
+						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[19]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[19]!!}</select>
 						</td>
 						<td {!!$set_gray_array[20]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[20]}};">{!!$TreatmentDetailsSelectArray[20]!!}</select>
+						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[20]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[20]!!}</select>
 						</td>
 						<td {!!$set_gray_array[21]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[21]}};">{!!$TreatmentDetailsSelectArray[21]!!}</select>
+						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[21]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[21]!!}</select>
 						</td>
 						<td {!!$set_gray_array[22]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[22]}};">{!!$TreatmentDetailsSelectArray[22]!!}</select>
+						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[22]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[22]!!}</select>
 						</td>
 						<td {!!$set_gray_array[23]!!}>
-						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[23]}};">{!!$TreatmentDetailsSelectArray[23]!!}</select>
+						<select name="TreatmentDetailsSelect[]" style="width:200px;background-color:{{$only_treatment_color_array[23]}};" class="tom_select" multiple>{!!$TreatmentDetailsSelectArray[23]!!}</select>
 						</td>
 					</tr>
 					<tr>
@@ -290,4 +271,5 @@ table td {border: 1px solid #aaa;}
             </div>
         </div>
     </div>
+
 @endsection

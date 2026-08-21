@@ -70,7 +70,6 @@ class ContractList extends Component
 		$UserSerial=session('targetUserSerial');
         $Contracts="";$userinf="";
 		$contractQuery = Contract::query();
-		//$contractQuery=$contractQuery->leftjoin('contract_details', 'contracts.serial_keiyaku', '=', 'contract_details.serial_keiyaku');
 		
 		if($this->serch_key_contract<>""){
 			$key="%".$this->serch_key_contract."%";
@@ -147,7 +146,7 @@ class ContractList extends Component
 		if(session('targetUserSerial')!="all"){
 			$this->targetPage=null;
 		}
-		
+				
 		$contractQuery=$contractQuery->paginate($perPage = initConsts::DdisplayLineNumCustomerList(),['*'], 'page',$this->targetPage);
     	
 		/*$GoBackPlaceName="";

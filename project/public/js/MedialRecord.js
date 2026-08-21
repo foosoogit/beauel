@@ -21,7 +21,7 @@ var ContractSerial = document.getElementById("contract_serial").value;
 
 const chara = new Image();
 let host_url=document.getElementById("HTTP_HOST").value
-console.log("target_file="+document.getElementById("target_file").value);
+//console.log("target_file="+document.getElementById("target_file").value);
 if(document.getElementById("target_file").value!=""){
 	chara.src =host_url+'/'+document.getElementById("target_file").value;
 	console.log("chara.src-1="+chara.src);
@@ -30,17 +30,9 @@ if(document.getElementById("target_file").value!=""){
 		ctx.drawImage(chara,0,0,canvas.width,canvas.height);
 	};
 }else{
-	console.log("newimageUrl 0");
+	
 	let newimageUrl=document.getElementById("imge_url").value
-	
-	
 	chara.src =host_url+"/images/Image_body_w796_h496.png";
-	console.log("chara.src="+chara.src);
-	//const chara = new Image();
-	//chara.src = newimageUrl;
-	//console.log("newimageUrl="+newimageUrl);
-	//console.log("chara.src-2="+chara.src);
-	//chara.src ='https://'+host_url+"/images/Image_body_w796_h496.png";
 	chara.onload = () => {
 		var bairitu=2;
 		ctx.drawImage(chara,-50,0,canvas.width,canvas.height);

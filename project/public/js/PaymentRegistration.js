@@ -92,8 +92,8 @@ $(function(){
 
 function getPaymentMethodSlct(target){
 	$.ajax({
-		  //url: '{{route("make_htm_get_treatment_slct_ajax")}}',
-		url: 'make_htm_get_payment_method_slct_ajax',
+		  url: '{{route("make_htm_get_treatment_slct_ajax")}}',
+		//url: '{{ route("make_htm_get_payment_method_slct") }}',
 		  type: 'post', // getかpostを指定(デフォルトは前者)
 		  dataType: 'text', // 「json」を指定するとresponseがJSONとしてパースされたオブジェクトになる
 		  scriptCharset: 'utf-8',
