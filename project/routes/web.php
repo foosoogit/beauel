@@ -6,7 +6,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Requests\InpCustomerRequest;
 use App\Http\Controllers\OtherFunc;
-use App\Http\Livewire\CustomersList;
+//use App\Livewire\CustomersList;
+use App\Livewire\CustomersList;
 use App\Http\Livewire\ContractList;
 use App\Http\Livewire\DailyReport;
 use App\Http\Livewire\MonthlyReport;
@@ -277,12 +278,13 @@ Route::middleware('auth:admin')->group(function () {
                 //log::alert("livewire/update CashBookList");
                 return view('admin.CashBookList');
             }
+
             /*
             }else if(session('CashBookList')=="ListStaffInOut"){
                 return view('admin.CashBookListgit add .');
              }
             */
-        });
+       });
         
         Route::post('/customers/MedicalRecordIflame', [AdminController::class,'ShowMedicalRecordFromIframe',function(Request $request){}])->name("ShowMedicalRecordIflame");
         Route::get('/customers/MedicalRecord', [AdminController::class,'ShowMedicalRecord',function(Request $request){}])->name("ShowMedicalRecord.get");

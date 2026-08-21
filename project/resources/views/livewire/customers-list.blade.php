@@ -153,7 +153,8 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{$users->appends(request()->query())->links('pagination::bootstrap-4')}}
+                {{ $users->appends(request()->query())->withPath(route('customers.CustomersList.show', [], false))->links('pagination::bootstrap-4') }}
+                {{--{{$users->appends(request()->query())->links('pagination::bootstrap-4')}}--}}
             </div>
             <!-- モーダル・ダイアログ -->
             <div class="modal" id="YoyakuModal" tabindex="-1">
